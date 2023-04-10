@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+//home admin
+use App\Http\Controllers\HomeAdminController;
+
+Route::get('/admin_home', [HomeAdminController::class, 'index'])->name('admin_home');
+

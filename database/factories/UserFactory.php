@@ -20,8 +20,6 @@ class UserFactory extends Factory
     {
         return [
             'name' => $this->faker->name(),
-            'birth' => $this->faker->date(),
-            'gender' => $this->faker->randomElement(array_keys(User::$genders)),
             'address' => $this->faker->address(),
             'phone' => $this->faker->numerify('0#########'),
             'password' => Hash::make(123456789),

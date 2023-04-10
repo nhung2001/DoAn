@@ -10,17 +10,6 @@ class User extends Authenticatable
 {
     use HasFactory, SoftDeletes;
 
-    // gender
-    public const GENDER_MALE = 0;
-    public const GENDER_FEMALE = 1;
-    public const GENDER_OTHER = 2;
-
-    public static $genders = [
-        self::GENDER_MALE => 'Nam',
-        self::GENDER_FEMALE => 'Nữ',
-        self::GENDER_OTHER => 'Khác',
-    ];
-
     //role
     public const ROLE_CUSTOMER = 0;
     public const ROLE_STAFF = 1;
@@ -34,8 +23,6 @@ class User extends Authenticatable
 
     protected $fillable = [
         'name',
-        'birth',
-        'gender',
         'phone',
         'email',
         'password',
@@ -47,7 +34,6 @@ class User extends Authenticatable
         'password',
     ];
     protected $dates = [
-        'birth',
         'created_at',
         'updated_at',
         'deleted_at',
