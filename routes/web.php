@@ -13,9 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//login admin
+use App\Http\Controllers\LoginController;
+
+Route::prefix('admin.auth')->group(function(){
+    Route::get('/viewlogin', [LoginController::class, 'ViewLogin'])->name('viewlogin');
+    Route::post('/login', [LoginController::class, 'Login'])->name('login');
+    Route::get('/logout', [LoginController::class, 'Logout'])->name('logout');
+});
 
 //home admin
 use App\Http\Controllers\HomeAdminController;
 
-Route::get('/admin_home', [HomeAdminController::class, 'index'])->name('admin_home');
-
+Route::prefix('admin')->middleware('CheckLogin')->group(function (){
+    Route::get('/home', [HomeAdminController::class, 'index'])->middleware('CheckLogin')->name('home');
+});
