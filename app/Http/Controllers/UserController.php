@@ -57,4 +57,32 @@ class UserController extends Controller
             return redirect()->back()->with('error', 'Thêm mới thất bại');
         }
     }
+    //sửa user
+    public function edit($id)
+    {
+        $user = User::find($id);
+        return view('backend.user.edit', compact('user'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required',
+            'phone' => 'required',
+            'address' => 'required',
+        ],
+        [
+            'name.required' => 'Vui lòng nhập tên',
+            'phone.required' => 'Vui lòng nhập số điện thoại',
+            'address.required' => 'Vui lòng nhập địac chỉ',
+        ]
+    );
+        $user = User::find($id);
+        $user->update([
+            'name' => $request->name,
+            'phone' => $request->phone,
+            'address' => $request->address,
+        ]);
+        return redirect()->route('user')->with('success', 'Đã cập nhật thông tin người dùng');
+    }
 }

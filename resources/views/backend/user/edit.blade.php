@@ -1,7 +1,7 @@
 @extends('backend.layout.master')
 
 @section('title')
-    <title>Add User</title>
+    <title>Update User</title>
 
 @section('sidebar')
     @parent
@@ -16,12 +16,12 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('store') }}" method="post">
+                        <form action="{{ route('updateUser', $user->id) }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="email">Name: </label>
-                                <input type="text" name="name" class="form-control @error('name') is-invalid @enderror"
-                                    placeholder="Enter name">
+                                <input type="text" name="name" value="{{ $user->name }}"
+                                    class="form-control @error('name') is-invalid @enderror" id="email">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -30,29 +30,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Email: </label>
-                                <input type="email" name="email"
-                                    class="form-control @error('email') is-invalid @enderror" placeholder="Enter email">
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Password: </label>
-                                <input type="password" name="password"
-                                    class="form-control @error('password') is-invalid @enderror"
-                                    placeholder="Enter password">
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input disabled type="email" name="email" value="{{ $user->email }}"
+                                    class="form-control" id="email">
                             </div>
                             <div class="form-group">
                                 <label for="email">Phone: </label>
-                                <input type="text" name="phone"
-                                    class="form-control @error('phone') is-invalid @enderror" placeholder="Enter phone">
+                                <input type="text" name="phone" value="{{ $user->phone }}"
+                                    class="form-control @error('phone') is-invalid @enderror" id="email">
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -61,8 +45,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Address: </label>
-                                <input type="text" name="address"
-                                    class="form-control @error('address') is-invalid @enderror" placeholder="Enter address">
+                                <input type="text" name="address" value="{{ $user->address }}"
+                                    class="form-control @error('address') is-invalid @enderror" id="email">
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -71,12 +55,12 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Role: </label>
-                                <select name="role">
-                                    <option>Admin</option>
-                                    <option>User</option>
+                                <select name="role" disabled>
+                                    <option value="Admin"{{ $user->role == '1' ? 'selected' : '' }}>Admin</option>
+                                    <option value="User"{{ $user->role == '0' ? 'selected' : '' }}>User</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Tạo</button>
+                            <button type="submit" class="btn btn-primary">Lưu</button>
                         </form>
                     </div>
                 </div>
