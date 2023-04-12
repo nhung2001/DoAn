@@ -85,4 +85,11 @@ class UserController extends Controller
         ]);
         return redirect()->route('user')->with('success', 'Đã cập nhật thông tin người dùng');
     }
+    //xóa user
+    public function destroy($id)
+    {
+        $user = User::find($id)->delete();
+        return redirect()->route('user')->with('success', 'Đã xóa người dùng');
+    }
+    
 }

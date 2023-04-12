@@ -37,4 +37,5 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function (){
     Route::post('/store', [UserController::class, 'store'])->middleware('CheckLogin')->name('store');
     Route::get('/editUser/{id}', [UserController::class, 'edit'])->middleware('CheckLogin')->name('editUser');
     Route::post('/updateUser/{id}', [UserController::class, 'update'])->middleware('CheckLogin')->name('updateUser');
+    Route::post('/destroyUser/{id}', [UserController::class, 'destroy'])->middleware('CheckLogin')->name('destroyUser');
 });

@@ -55,6 +55,11 @@
                                         <td>{{ $user->address }}</td>
                                         <td>
                                             <a href="{{ route('editUser', [$user->id]) }}" class="btn btn-default">Edit</a>
+                                            <form action="{{ route('destroyUser', $user->id) }}" method="post">
+                                                @csrf
+                                                <button type="submit" class="btn btn-danger"
+                                                    onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
