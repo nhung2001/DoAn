@@ -19,7 +19,7 @@
                     </div><!-- /.col -->
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
-                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a href="">Home</a></li>
                             <li class="breadcrumb-item active">List User</li>
                         </ol>
                     </div><!-- /.col -->
@@ -30,7 +30,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="" class="btn btn-success float-right m-2">Add User</a>
+                        <a href="{{ route('createUser') }}" class="btn btn-success float-right m-2">Add User</a>
                     </div>
                     <div class="col-md-12">
                         <table class="table">

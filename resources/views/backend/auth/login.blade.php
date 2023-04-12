@@ -39,7 +39,7 @@
                     @csrf
 
                     <div class="input-group mb-3">
-                        <input type="text" class="form-control @error('email') is-invalid @enderror" name="email"
+                        <input type="email" class="form-control @error('email') is-invalid @enderror" name="email"
                             value="" placeholder="Email">
                         @error('email')
                             <span class="invalid-feedback" role="alert">
