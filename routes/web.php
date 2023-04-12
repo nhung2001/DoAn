@@ -24,7 +24,13 @@ Route::prefix('admin.auth')->group(function(){
 
 //home admin
 use App\Http\Controllers\HomeAdminController;
+use App\Http\Controllers\UserController;
 
 Route::prefix('admin')->middleware('CheckLogin')->group(function (){
+
+    //home
     Route::get('/home', [HomeAdminController::class, 'index'])->middleware('CheckLogin')->name('home');
+
+    //user
+    Route::get('/user', [UserController::class, 'index'])->middleware('CheckLogin')->name('user');
 });
