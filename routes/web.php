@@ -26,6 +26,7 @@ Route::prefix('admin.auth')->group(function(){
 use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\SubCategoryController;
 
 Route::prefix('admin')->middleware('CheckLogin')->group(function (){
 
@@ -47,4 +48,12 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function (){
     Route::get('/editCategory/{id}', [CategoryController::class, 'edit'])->middleware('CheckLogin')->name('editCategory');
     Route::post('/updateCategory/{id}', [CategoryController::class, 'update'])->middleware('CheckLogin')->name('updateCategory');
     Route::post('/destroyCategory/{id}',[CategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroyCategory');
+
+    //sub_category
+    Route::get('/subcategory', [SubCategoryController::class, 'index'])->middleware('CheckLogin')->name('subcategory');
+    Route::get('/createSubCategory', [SubCategoryController::class, 'create'])->middleware('CheckLogin')->name('createSubCategory');
+    Route::post('/storeSubCategory', [SubCategoryController::class, 'store'])->middleware('CheckLogin')->name('storeSubCategory');
+    Route::get('/editSubCategory/{id}', [SubCategoryController::class, 'edit'])->middleware('CheckLogin')->name('editSubCategory');
+    Route::post('/updateSubCategory/{id}', [SubCategoryController::class, 'update'])->middleware('CheckLogin')->name('updateSubCategory');
+    Route::post('/destroySubCategory/{id}',[SubCategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroySubCategory');
 });

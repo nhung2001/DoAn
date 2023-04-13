@@ -51,9 +51,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="" class="nav-link">
+                <a href="{{ route('subcategory') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Danh sách sản phẩm</p>
+                  <p>Danh mục sản phẩm 2</p>
                 </a>
               </li>
             </ul>

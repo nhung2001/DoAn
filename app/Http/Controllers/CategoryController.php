@@ -16,8 +16,6 @@ class CategoryController extends Controller
 
     public function create()
     {
-        //$categories = Sub_categories::where('categories_id', 0)->oderBy('categories_id','DESC')->get();
-        //$categories = Categories::oderby('id','ASC')->get();
         return view('backend.category.create');
     }
 
