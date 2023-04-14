@@ -20,4 +20,13 @@ class Sub_categories extends Model
         'updated_at',
         'deleted_at',
     ];
+    public function categories()
+    {
+        return $this->belongsTo('App\Models\Categories');
+    }
+
+    // public function products()
+    // {
+    //     return $this->hasMany(Products::class);
+    // }
 }

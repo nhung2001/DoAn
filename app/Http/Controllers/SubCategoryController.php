@@ -10,8 +10,8 @@ class SubCategoryController extends Controller
 {
     public function index()
     {
-        $categories = Sub_categories::orderby('id', 'ASC')->paginate(5);
-        return view('backend.sub_category.index', compact('categories'));
+        $subcategories = Sub_categories::orderby('id', 'ASC')->paginate(5);
+        return view('backend.sub_category.index', compact('subcategories'));
     }
 
     public function create()
@@ -39,9 +39,9 @@ class SubCategoryController extends Controller
 
     public function edit($id)
     {
-        $category = Sub_categories::find($id);
+        $subcategory = Sub_categories::find($id);
         $categories = Categories::get();
-        return view('backend.sub_category.edit', compact('category','categories'));
+        return view('backend.sub_category.edit', compact('subcategory','categories'));
     }
     public function update(Request $request, $id)
     {

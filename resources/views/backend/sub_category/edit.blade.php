@@ -16,11 +16,11 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('updateSubCategory', $category->id) }}" method="post">
+                        <form action="{{ route('updateSubCategory', $subcategory->id) }}" method="post">
                             @csrf
                             <div class="form-group">
                                 <label for="email">Name: </label>
-                                <input type="text" name="name" value="{{ $category->name }}"
+                                <input type="text" name="name" value="{{ $subcategory->name }}"
                                     class="form-control @error('name') is-invalid @enderror" id="email">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -32,10 +32,15 @@
                                 <label for="email">Parent: </label>
                                 <select name="categories_id" id="categories_id">
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == $subcategory->categories_id ? 'selected' : '' }}>
+                                            {{ $category->name }}</option>
                                     @endforeach
                                 </select>
                             </div>
+                            {{-- <option value="{{ $category->id }}"
+                                {{ $category->id == $subcategory->categories_id ? 'selected' : '' }}>{{ $category->name }}
+                            </option> --}}
                             <button type="submit" class="btn btn-primary">Lưu</button>
                         </form>
                     </div>

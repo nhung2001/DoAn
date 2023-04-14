@@ -15,9 +15,9 @@ class Products extends Model
         'image',
         'price',
         'author',
-        'quantity',
         'description',
-        'categories_id',
+        'quantity',
+        'sub_categories_id',
     ];
 
     protected $dates = [
