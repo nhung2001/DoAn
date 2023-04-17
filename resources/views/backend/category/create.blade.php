@@ -29,15 +29,6 @@
                                     </span>
                                 @enderror
                             </div>
-                            {{-- <div class="form-group">
-                                <label for="email">Parent: </label>
-                                <select name="categories_id" id="categories_id">
-                                    <option value="0">--Danh mục cha--</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
                             <button type="submit" class="btn btn-primary">Tạo</button>
                         </form>
                     </div>

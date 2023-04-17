@@ -1,7 +1,8 @@
 @extends('backend.layout.master')
 
 @section('title')
-    <title>List Sub_Category</title>
+    <title>
+        List Sub_Category</title>
 
 @section('sidebar')
     @parent
@@ -25,7 +26,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('createSubCategory') }}" class="btn btn-success float-left m-2">Add Sub_Category</a>
+                        <a href="{{ route('createSubCategory') }}" class="btn btn-success float-left m-2">Add
+                            Sub_Category</a>
                     </div>
                     <div class="col-md-12">
                         @if (session('success'))
@@ -34,7 +36,7 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <table class="table table-bordered" >
+                        <table class="table table-bordered">
                             <thead>
                                 <tr>
                                     <th scope="col">Name</th>
@@ -43,13 +45,16 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($categories as $category)
+                                @foreach ($subcategories as $subcategory)
                                     <tr>
-                                        <td>{{ $category->name }}</td>
-                                        <td>{{ $category->categories_id }}</td>
+                                        <td>{{ $subcategory->name }}</td>
+                                        <td>{{ $subcategory->categories->name }}</td>
+
                                         <td>
-                                            <a href="{{ route('editSubCategory', [$category->id]) }}" class="btn btn-default">Edit</a>
-                                            <form action="{{ route('destroySubCategory', $category->id) }}" method="post">
+                                            <a href="{{ route('editSubCategory', [$subcategory->id]) }}"
+                                                class="btn btn-default">Edit</a>
+                                            <form action="{{ route('destroySubCategory', $subcategory->id) }}"
+                                                method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>
@@ -61,7 +66,7 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{ $categories->links('pagination::bootstrap-4') }}
+                        {{ $subcategories->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
                 <!-- /.row -->

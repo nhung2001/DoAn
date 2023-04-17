@@ -19,8 +19,8 @@ class Categories extends Model
         'updated_at',
         'deleted_at_at'
     ];
-    public function subCategories()
-    {
-        return $this->hasMany(Sub_categories::class);
-    }
+    // public function subCategories()
+    // {
+    //     return $this->hasMany(Sub_categories::class);
+    // }
 }
