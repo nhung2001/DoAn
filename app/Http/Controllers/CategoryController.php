@@ -23,10 +23,11 @@ class CategoryController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required',
+                'name' => 'required|unique:categories,name',
             ],
             [
                 'name.required' => 'Vui lòng nhập tên',
+                'name.unique' => 'Tên danh mục đã tồn tại',
             ]
         );
         $categories = Categories::create([
@@ -44,10 +45,11 @@ class CategoryController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required',
+                'name' => 'required|unique:categories,name',
             ],
             [
                 'name.required' => 'Vui lòng nhập tên',
+                'name.unique' => 'Tên danh mục đã tồn tại',
             ]
         );
         $category = Categories::find($id)->update([
@@ -57,7 +59,14 @@ class CategoryController extends Controller
     }
     public function destroy($id)
     {
-        $category = Categories::find($id)->delete();
-        return redirect()->route('category')->with('success', 'Đã xóa danh mục');
+        $category = Categories::find($id);
+        $countSub =Sub_categories::with('subCategories')->where('categories_id',$category->id)->count();
+        if($countSub>0){
+            return redirect()->route('category')->with('error', 'Không  xóa danh mục này được');
+        }
+        else{
+            $category->delete();
+            return redirect()->route('category')->with('success', 'Đã xóa danh mục');
+        }
     }
 }

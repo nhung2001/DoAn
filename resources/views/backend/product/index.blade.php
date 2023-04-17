@@ -38,13 +38,15 @@
                             <thead>
                                 <tr>
                                     <th scope="col">#</th>
-                                    <th scope="col">Name</th>
                                     <th scope="col">Image</th>
+                                    <th scope="col">Name</th>
                                     <th scope="col">Price</th>
+                                    <th scope="col">Discount</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Author</th>
                                     <th scope="col">Description</th>
                                     <th scope="col">Category</th>
+                                    <th scope="col">Hot</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -52,13 +54,15 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <th scope="row">{{ $product->id }}</th>
-                                        <td>{{ $product->name }}</td>
                                         <td><img width="50px" height="150px" src="{{ asset('image/product/'. $product->image) }}"></td>
+                                        <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
+                                        <td>{{ $product->discount}}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->author }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->sub_categories->name }}</td>
+                                        <td>{{ $product->hot }}</td>
                                         <td>
                                             <a href="{{ route('editProduct', [$product->id]) }}" class="btn btn-default">Edit</a>
                                             <form action="{{ route('destroyProduct', $product->id) }}" method="post">

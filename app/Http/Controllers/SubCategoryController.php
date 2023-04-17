@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Sub_categories;
 use Illuminate\Http\Request;
 use App\Models\Categories;
+use App\Models\Products;
 
 class SubCategoryController extends Controller
 {
@@ -24,10 +25,11 @@ class SubCategoryController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required',
+                'name' => 'required|unique:sub_categories,name',
             ],
             [
                 'name.required' => 'Vui lòng nhập tên',
+                'name.unique' => 'Tên danh mục đã tồn tại',
             ]
         );
         $categories = Sub_categories::create([
@@ -47,13 +49,14 @@ class SubCategoryController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required',
+                'name' => 'required|unique:sub_categories,name',
             ],
             [
                 'name.required' => 'Vui lòng nhập tên',
+                'name.unique' => 'Tên danh mục đã tồn tại',
             ]
         );
-        $category = Sub_categories::find($id)->update([
+        $subcategory = Sub_categories::find($id)->update([
             'name' => $request->name,
             'categories_id' => $request->categories_id,
         ]);
@@ -61,7 +64,14 @@ class SubCategoryController extends Controller
     }
     public function destroy($id)
     {
-        $category = Sub_categories::find($id)->delete();
-        return redirect()->route('subcategory')->with('success', 'Đã xóa danh mục');
+        $subcategory = Sub_categories::find($id);
+        $countPro =Products::with('products')->where('sub_categories_id',$subcategory->id)->count();
+        if($countPro>0){
+            return redirect()->route('subcategory')->with('error', 'Không  xóa danh mục này được');
+        }
+        else{
+            $subcategory->delete();
+            return redirect()->route('subcategory')->with('success', 'Đã xóa danh mục');
+        }
     }
 }

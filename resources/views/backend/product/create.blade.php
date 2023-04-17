@@ -41,6 +41,17 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="discount">Discount: </label>
+                                <input type="float" name="discount"
+                                    class="form-control @error('discount') is-invalid @enderror"
+                                    placeholder="Enter discount" id="discount">
+                                @error('discount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="quantity">Quantity: </label>
                                 <input type="interger" name="quantity"
                                     class="form-control @error('quantity') is-invalid @enderror"
@@ -64,9 +75,9 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
-                                <input type="text" name="description"
+                                <textarea type="text" name="description"
                                     class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Enter description" id="description">
+                                    placeholder="Enter description" id="description"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -79,6 +90,13 @@
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hot">Hot: </label>
+                                <select name="hot" id="hot">
+                                    <option>Có</option>
+                                    <option>Không</option>
                                 </select>
                             </div>
                             <div class="form-group">

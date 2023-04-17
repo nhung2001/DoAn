@@ -2,11 +2,13 @@
 
 namespace Database\Seeders;
 
+use App\Models\Categories;
+use App\Models\Products;
+use App\Models\Sub_categories;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Categories;
 
-class CategoriesSeeder extends Seeder
+class DbSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,6 +17,10 @@ class CategoriesSeeder extends Seeder
      */
     public function run()
     {
-        Categories::factory()->count(3)->create();
+        $this->call([
+            Categories::class,
+            Sub_categories::class,
+            Products::class,
+        ]);
     }
 }

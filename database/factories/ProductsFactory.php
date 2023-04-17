@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\Products;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
@@ -28,6 +29,8 @@ class ProductsFactory extends Factory
             'author' => $this->faker->title(),
             'description' => $this->faker->title($max=10),
             'quantity' => $this->faker->numberBetween($min = 1, $max = 500),
+            'hot' => $this->faker->randomElement(array_keys(Products::$hot)),
+            'discount' => $this->faker->numberBetween($min = 0, $max = 100),
             'sub_categories_id' => $subcategoriesId->random(),
         ];
     }

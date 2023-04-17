@@ -10,6 +10,15 @@ class Products extends Model
 {
     use HasFactory, SoftDeletes;
 
+    //hot
+    public const HOT_YES = 1;
+    public const HOT_NO = 0;
+
+    public static $hot = [
+        self::HOT_YES => 'Có',
+        self::HOT_NO => 'Không',
+    ];
+
     protected $fillable = [
         'name',
         'image',
@@ -18,6 +27,8 @@ class Products extends Model
         'description',
         'quantity',
         'sub_categories_id',
+        'hot',
+        'discount'
     ];
 
     protected $dates = [
@@ -25,4 +36,8 @@ class Products extends Model
         'updated_at',
         'deleted_at',
     ];
+    public function sub_categories()
+    {
+        return $this->belongsTo('App\Models\Sub_categories');
+    }
 }

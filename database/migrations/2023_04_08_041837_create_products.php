@@ -21,6 +21,8 @@ return new class extends Migration
             $table->string('author');
             $table->string('description');
             $table->integer('quantity');
+            $table->double('discount');
+            $table->tinyInteger('hot')->default(1);
             $table->timestamps();
             $table->softDeletes();
 

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 //login admin
 use App\Http\Controllers\LoginController;
 
-Route::prefix('admin.auth')->group(function(){
+Route::prefix('admin.auth')->group(function () {
     Route::get('/viewlogin', [LoginController::class, 'ViewLogin'])->name('viewlogin');
     Route::post('/login', [LoginController::class, 'Login'])->name('login');
     Route::get('/logout', [LoginController::class, 'Logout'])->name('logout');
@@ -27,8 +27,9 @@ use App\Http\Controllers\HomeAdminController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
+use App\Http\Controllers\ProductController;
 
-Route::prefix('admin')->middleware('CheckLogin')->group(function (){
+Route::prefix('admin')->middleware('CheckLogin')->group(function () {
 
     //home
     Route::get('/home', [HomeAdminController::class, 'index'])->middleware('CheckLogin')->name('home');
@@ -47,7 +48,7 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function (){
     Route::post('/storeCategory', [CategoryController::class, 'store'])->middleware('CheckLogin')->name('storeCategory');
     Route::get('/editCategory/{id}', [CategoryController::class, 'edit'])->middleware('CheckLogin')->name('editCategory');
     Route::post('/updateCategory/{id}', [CategoryController::class, 'update'])->middleware('CheckLogin')->name('updateCategory');
-    Route::post('/destroyCategory/{id}',[CategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroyCategory');
+    Route::post('/destroyCategory/{id}', [CategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroyCategory');
 
     //sub_category
     Route::get('/subcategory', [SubCategoryController::class, 'index'])->middleware('CheckLogin')->name('subcategory');
@@ -55,5 +56,23 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function (){
     Route::post('/storeSubCategory', [SubCategoryController::class, 'store'])->middleware('CheckLogin')->name('storeSubCategory');
     Route::get('/editSubCategory/{id}', [SubCategoryController::class, 'edit'])->middleware('CheckLogin')->name('editSubCategory');
     Route::post('/updateSubCategory/{id}', [SubCategoryController::class, 'update'])->middleware('CheckLogin')->name('updateSubCategory');
-    Route::post('/destroySubCategory/{id}',[SubCategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroySubCategory');
+    Route::post('/destroySubCategory/{id}', [SubCategoryController::class, 'destroy'])->middleware('CheckLogin')->name('destroySubCategory');
+
+    //product
+    Route::get('/product', [ProductController::class, 'index'])->middleware('CheckLogin')->name('product');
+    Route::get('/createProduct', [ProductController::class, 'create'])->middleware('CheckLogin')->name('createProduct');
+    Route::post('/storeProduct', [ProductController::class, 'store'])->middleware('CheckLogin')->name('storeProduct');
+    Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->middleware('CheckLogin')->name('editProduct');
+    Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->middleware('CheckLogin')->name('updateProduct');
+    Route::post('/destroyProduct/{id}', [ProductController::class, 'destroy'])->middleware('CheckLogin')->name('destroyProduct');
+});
+
+//home admin
+use App\Http\Controllers\HomeController;
+
+
+Route::prefix('user')->group(function () {
+
+    //home
+    Route::get('/home_user', [HomeController::class, 'index'])->name('home-user');
 });

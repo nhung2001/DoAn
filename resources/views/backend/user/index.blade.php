@@ -34,6 +34,12 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                        <div class="alert alert-success alert-dismissable fade show">
+                            <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                            {{ session('error') }}
+                        </div>
+                    @endif
                         <table class="table table-bordered" >
                             <thead>
                                 <tr>

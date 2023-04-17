@@ -39,6 +39,16 @@
                                 @enderror
                             </div>
                             <div class="form-group">
+                                <label for="discount">Discount: </label>
+                                <input type="float" name="discount" value="{{ $product->discount }}"
+                                    class="form-control @error('discount') is-invalid @enderror" id="discount">
+                                @error('discount')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                            <div class="form-group">
                                 <label for="quantity">Quantity: </label>
                                 <input type="interger" name="quantity" value="{{ $product->quantity }}"
                                     class="form-control @error('quantity') is-invalid @enderror" id="quantity">
@@ -60,8 +70,8 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
-                                <input type="text" name="description" value="{{ $product->description }}"
-                                    class="form-control @error('description') is-invalid @enderror" id="description">
+                                <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
+                                    id="description">{{ $product->description }}</textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -76,6 +86,13 @@
                                             {{ $subcategory->id == $product->sub_categories_id ? 'selected' : '' }}>
                                             {{ $subcategory->name }}</option>
                                     @endforeach
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="hot">Hot: </label>
+                                <select name="hot">
+                                    <option value="Có"{{ $product->hot == '1' ? 'selected' : '' }}>Có</option>
+                                    <option value="Không"{{ $product->hot == '0' ? 'selected' : '' }}>Không</option>
                                 </select>
                             </div>
                             <div class="form-group">

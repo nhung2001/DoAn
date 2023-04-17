@@ -34,6 +34,7 @@ class UserController extends Controller
                 'size' => 'Phone là 10 chữ số',
                 'min' => 'Password tối thiểu 8 ký tự',
                 'email' => 'Vui lòng nhập email',
+                'email.unique' => 'Email đã tồn tại',
                 'address' => 'Vui lòng nhập địa chỉ',
             ]
         );
@@ -42,8 +43,8 @@ class UserController extends Controller
         } else {
             $role = 0;
         }
-        $email = User::where('email')->get();
-        if ($request->email != $email) {
+        // $email = User::where('email')->get();
+        // if ($request->email != $email) {
             $user = User::create([
                 'name' => $request->name,
                 'email' => $request->email,
@@ -53,9 +54,9 @@ class UserController extends Controller
                 'role' => $role,
             ]);
             return redirect()->route('user')->with('success', 'Thêm mới thành công');
-        } else {
-            return redirect()->back()->with('error', 'Thêm mới thất bại');
-        }
+        // } else {
+        //     return redirect()->route('user')->with('error', 'Email đã tồn tại');
+        // }
     }
     //sửa user
     public function edit($id)
