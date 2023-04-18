@@ -28,6 +28,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\NewController;
 
 Route::prefix('admin')->middleware('CheckLogin')->group(function () {
 
@@ -65,14 +66,22 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->middleware('CheckLogin')->name('editProduct');
     Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->middleware('CheckLogin')->name('updateProduct');
     Route::post('/destroyProduct/{id}', [ProductController::class, 'destroy'])->middleware('CheckLogin')->name('destroyProduct');
+
+    //new
+    Route::get('/new', [NewController::class, 'index'])->middleware('CheckLogin')->name('new');
+    Route::get('/createNew', [NewController::class, 'create'])->middleware('CheckLogin')->name('createNew');
+    Route::post('/storeNew', [NewController::class, 'store'])->middleware('CheckLogin')->name('storeNew');
+    Route::get('/editNew/{id}', [NewController::class, 'edit'])->middleware('CheckLogin')->name('editNew');
+    Route::post('/updateNew/{id}', [NewController::class, 'update'])->middleware('CheckLogin')->name('updateNew');
+    Route::post('/destroyNew/{id}', [NewController::class, 'destroy'])->middleware('CheckLogin')->name('destroyNew');
 });
 
-//home admin
+//user
 use App\Http\Controllers\HomeController;
 
 
 Route::prefix('user')->group(function () {
 
     //home
-    Route::get('/home_user', [HomeController::class, 'index'])->name('home-user');
+    Route::get('/home_user', [HomeController::class, 'index'])->name('home_user');
 });

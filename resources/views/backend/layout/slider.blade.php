@@ -74,6 +74,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('new') }}" class="nav-link">
+                        <i class="fa-solid fa-users"></i>
+                        <p>
+                            Quản lý tin tức
+                            <span class="right badge badge-danger"></span>
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="" class="nav-link">
                         <i class="fa-brands fa-jedi-order"></i>
                         <p>

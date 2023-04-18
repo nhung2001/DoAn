@@ -16,4 +16,5 @@ yarn-error.log
 /public/AdminLTE-3.2.0
 /public/frontend
 /public/image
+/public/assets
 /resources/views/frontend
