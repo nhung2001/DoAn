@@ -11,10 +11,10 @@
     <meta name="robots" content="noodp,index,follow" />
     <meta name='revisit-after' content='1 days' />
     <meta name="keywords" content="">
-    <title>DKT Store</title>
+    <title>NShop</title>
     <link rel="canonical" href="index.html">
     <link rel="shortcut icon"
-        href="{{ asset('frontend/themes/assets/favicon221b.png?1481775169361') }}"
+        href="{{ asset('frontend/themes/assets/nshop5.jpg') }}"
         type="image/x-icon" />
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=vietnamese" rel="stylesheet"> -->
     <link href='{{ asset('/frontend/themes/assets/font-awesome.min221b.css?1481775169361') }}'
