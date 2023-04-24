@@ -85,6 +85,9 @@ Route::prefix('user')->group(function () {
     //home
     Route::get('/home_user', [HomeController::class, 'index'])->name('home_user');
 
+    //contact
+    Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+
     //new
     Route::get('/new', [HomeController::class, 'new'])->name('new');
     Route::get('/newDetail{id}', [HomeController::class, 'newDetail'])->name('newDetail');

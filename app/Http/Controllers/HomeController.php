@@ -20,7 +20,12 @@ class HomeController extends Controller
         $subcategories = Sub_categories::orderBy('name', 'asc')->get();
         return view('frontend.index', compact('hotProducts', 'discounts', 'hotNews', 'categories','subcategories'));
     }
-    
+    public function contact()
+    {
+        $categories = Categories::orderBy('name', 'asc')->get();
+        $hotNew = News::where('hot', 1)->limit(4)->get();
+        return view('frontend.page.contact', compact('hotNew', 'categories'));
+    }
     //tin tức
     public function new()
     {
@@ -67,5 +72,4 @@ class HomeController extends Controller
         return view('frontend.page.productDetail', compact('hotNew', 'product_Detail','categories'));
     }
 
-    
 }
