@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height:auto">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Edit Sub_category</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -30,7 +39,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Parent: </label>
-                                <select name="categories_id" id="categories_id">
+                                <select name="categories_id" id="categories_id" class="form-select form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"
                                             {{ $category->id == $subcategory->categories_id ? 'selected' : '' }}>
@@ -38,10 +47,10 @@
                                     @endforeach
                                 </select>
                             </div>
-                            {{-- <option value="{{ $category->id }}"
-                                {{ $category->id == $subcategory->categories_id ? 'selected' : '' }}>{{ $category->name }}
-                            </option> --}}
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                <a href="{{ route('subcategory') }}" class="btn btn-secondary">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

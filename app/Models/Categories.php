@@ -23,4 +23,7 @@ class Categories extends Model
     {
         return $this->hasMany(Sub_categories::class);
     }
+    public function products(){
+        return $this->hasManyThrough(products::class, Sub_categories::class);
+    }
 }

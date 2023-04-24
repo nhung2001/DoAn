@@ -25,7 +25,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('createProduct') }}" class="btn btn-success float-left m-2">Add Product</a>
+                        <a href="{{ route('createProduct') }}" class="btn btn-success float-left m-2"
+                            style="background-color: #337ab7">Add Product</a>
                     </div>
                     <div class="col-md-12">
                         @if (session('success'))
@@ -34,38 +35,41 @@
                                 {{ session('success') }}
                             </div>
                         @endif
-                        <table class="table table-bordered" >
-                            <thead>
+                        <table class="table table-bordered table-hover">
+                            <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Price</th>
                                     <th scope="col">Discount</th>
                                     <th scope="col">Quantity</th>
                                     <th scope="col">Author</th>
-                                    <th scope="col">Description</th>
+                                    {{-- <th scope="col">Description</th> --}}
                                     <th scope="col">Category</th>
                                     <th scope="col">Hot</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="background-color: #fff">
                                 @foreach ($products as $product)
                                     <tr>
                                         <th scope="row">{{ $product->id }}</th>
-                                        <td><img width="50px" height="150px" src="{{ asset('image/product/'. $product->image) }}"></td>
+                                        <td><img style="height: 100px; width: 80px;"
+                                                src="{{ asset('image/product/' . $product->image) }}"></td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
-                                        <td>{{ $product->discount}}</td>
+                                        <td>{{ $product->discount }}</td>
                                         <td>{{ $product->quantity }}</td>
                                         <td>{{ $product->author }}</td>
-                                        <td>{{ $product->description }}</td>
+                                        {{-- <td>{{ $product->description }}</td> --}}
                                         <td>{{ $product->sub_categories->name }}</td>
                                         <td>{{ $product->hot }}</td>
                                         <td>
-                                            <a href="{{ route('editProduct', [$product->id]) }}" class="btn btn-default">Edit</a>
-                                            <form action="{{ route('destroyProduct', $product->id) }}" method="post">
+                                            <a href="{{ route('editProduct', [$product->id]) }}"
+                                                class="btn d-inline btn-info">Edit</a>
+                                            <form class=" d-inline" action="{{ route('destroyProduct', $product->id) }}"
+                                                method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>

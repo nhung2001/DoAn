@@ -68,7 +68,7 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     Route::post('/destroyProduct/{id}', [ProductController::class, 'destroy'])->middleware('CheckLogin')->name('destroyProduct');
 
     //new
-    Route::get('/new', [NewController::class, 'index'])->middleware('CheckLogin')->name('new');
+    Route::get('/newAdmin', [NewController::class, 'index'])->middleware('CheckLogin')->name('newAdmin');
     Route::get('/createNew', [NewController::class, 'create'])->middleware('CheckLogin')->name('createNew');
     Route::post('/storeNew', [NewController::class, 'store'])->middleware('CheckLogin')->name('storeNew');
     Route::get('/editNew/{id}', [NewController::class, 'edit'])->middleware('CheckLogin')->name('editNew');
@@ -84,6 +84,18 @@ Route::prefix('user')->group(function () {
 
     //home
     Route::get('/home_user', [HomeController::class, 'index'])->name('home_user');
+
+    //new
     Route::get('/new', [HomeController::class, 'new'])->name('new');
     Route::get('/newDetail{id}', [HomeController::class, 'newDetail'])->name('newDetail');
+    Route::get('/homeView', [HomeController::class, 'home'])->name('homeView');
+
+
+    //product
+    Route::get('/productDetail{id}', [HomeController::class, 'productDetail'])->name('productDetail');
+    Route::any('/searchName', [HomeController::class, 'searchName'])->name('searchName');
+    Route::any('/searchPrice', [HomeController::class, 'searchPrice'])->name('searchPrice');
+
+    //category
+    // Route::get('/categoryUser', [HomeController::class, 'categoryUser'])->name('categoryUser');
 });

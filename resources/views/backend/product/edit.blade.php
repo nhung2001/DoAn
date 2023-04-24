@@ -10,23 +10,28 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height:auto">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Edit Product</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-6">
-                        <form action="{{ route('updateProduct', $product->id) }}" method="post" enctype="multipart/form-data">
+                        <form action="{{ route('updateProduct', $product->id) }}" method="post"
+                            enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name: </label>
-                                <input type="text" name="name" value="{{ $product->name }}"
-                                    class="form-control @error('name') is-invalid @enderror" id="name">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input disabled type="text" name="name" value="{{ $product->name }}"
+                                    class="form-control" id="name">
                             </div>
                             <div class="form-group">
                                 <label for="price">Price: </label>
@@ -80,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="category">Category: </label>
-                                <select name="sub_categories_id" id="sub_categories_id">
+                                <select name="sub_categories_id" id="sub_categories_id" class="form-select form-control">
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}"
                                             {{ $subcategory->id == $product->sub_categories_id ? 'selected' : '' }}>
@@ -90,7 +95,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="hot">Hot: </label>
-                                <select name="hot">
+                                <select name="hot" class="form-select form-control">
                                     <option value="Có"{{ $product->hot == '1' ? 'selected' : '' }}>Có</option>
                                     <option value="Không"{{ $product->hot == '0' ? 'selected' : '' }}>Không</option>
                                 </select>
@@ -100,7 +105,10 @@
                                 <input type="file" name="image" value="{{ $product->image }}" class="form-control "
                                     id="image">
                             </div>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Tạo</button>
+                                <a href="{{ route('product') }}" class="btn btn-secondary">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

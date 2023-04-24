@@ -23,11 +23,11 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <div class="wrapper">
 
         <!-- Navbar -->
-        @include('backend.layout.header');
+        @include('backend.layout.header')
         <!-- /.navbar -->
 
         <!-- Main Sidebar Container -->
-        @include('backend.layout.slider');
+        @include('backend.layout.slider')
 
         <!-- Content Wrapper. Contains page content -->
         @yield('content')

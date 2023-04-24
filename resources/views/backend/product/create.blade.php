@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height:auto">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Add User</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -75,8 +84,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
-                                <textarea type="text" name="description"
-                                    class="form-control @error('description') is-invalid @enderror"
+                                <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
                                     placeholder="Enter description" id="description"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
@@ -86,7 +94,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="category">Category: </label>
-                                <select name="sub_categories_id" id="sub_categories_id">
+                                <select name="sub_categories_id" id="sub_categories_id" class="form-select form-control">
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
                                     @endforeach
@@ -94,7 +102,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="hot">Hot: </label>
-                                <select name="hot" id="hot">
+                                <select name="hot" id="hot" class="form-select form-control">
                                     <option>Có</option>
                                     <option>Không</option>
                                 </select>
@@ -109,7 +117,10 @@
                                     </span>
                                 @enderror
                             </div>
-                            <button type="submit" class="btn btn-primary">Tạo</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Tạo</button>
+                                <a href="{{ route('product') }}" class="btn btn-secondary">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

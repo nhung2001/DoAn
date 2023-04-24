@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+<div class="content-wrapper" style="height:auto">
+    <div class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1 class="m-0">Edit User</h1>
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.container-fluid -->
+    </div>
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -55,12 +64,15 @@
                             </div>
                             <div class="form-group">
                                 <label for="email">Role: </label>
-                                <select name="role" disabled>
+                                <select name="role" disabled class="form-select form-control">
                                     <option value="Admin"{{ $user->role == '1' ? 'selected' : '' }}>Admin</option>
                                     <option value="User"{{ $user->role == '0' ? 'selected' : '' }}>User</option>
                                 </select>
                             </div>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                <a href="{{ route('user') }}" class="btn btn-secondary">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

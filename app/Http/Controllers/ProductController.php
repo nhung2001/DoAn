@@ -9,7 +9,6 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-
     public function index()
     {
         $products = Products::orderby('id', 'ASC')->paginate(15);
@@ -80,7 +79,6 @@ class ProductController extends Controller
             'quantity' => $request->quantity,
             'author' => $request->author,
             'description' => $request->description,
-            'description' => $request->description,
             'sub_categories_id' => $request->sub_categories_id,
         ]);
         return redirect()->route('product')->with('success', 'Thêm mới sản phẩm thành công');
@@ -140,6 +138,8 @@ class ProductController extends Controller
             'name' => $request->name,
             'image' => $image,
             'price' => $request->price,
+            'hot' => $request->hot,
+            'discount' => $request->discount,
             'quantity' => $request->quantity,
             'author' => $request->author,
             'description' => $request->description,

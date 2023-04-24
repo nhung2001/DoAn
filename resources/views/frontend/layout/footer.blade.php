@@ -1,5 +1,5 @@
 <footer id="footer">
-    <div class="top-footer">
+    <div class="top-footer" style="background-color: #dadede">
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-3">
@@ -61,3 +61,10 @@
         </div>
     </div>
 </footer>
+
+
+<style>
+    li>a:hover {
+        color: #47b42d
+    }
+</style>

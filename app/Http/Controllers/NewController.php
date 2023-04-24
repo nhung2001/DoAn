@@ -65,7 +65,7 @@ class NewController extends Controller
             'description' => $request->description,
             'content' => $request->content,
         ]);
-        return redirect()->route('new')->with('success', 'Thêm mới tin tức thành công');
+        return redirect()->route('newAdmin')->with('success', 'Thêm mới tin tức thành công');
     }
 
     public function edit($id)
@@ -115,7 +115,7 @@ class NewController extends Controller
             'description' => $request->description,
             'content' => $request->content,
         ]);
-        return redirect()->route('new')->with('success', 'Đã cập nhật tin tức');
+        return redirect()->route('newAdmin')->with('success', 'Đã cập nhật tin tức');
     }
     public function destroy($id)
     {
@@ -125,7 +125,7 @@ class NewController extends Controller
         //     return redirect()->route('new')->with('error', 'Không xóa tin tức này được');
         // } else {
             $new->delete();
-            return redirect()->route('new')->with('success', 'Đã xóa tin tức');
+            return redirect()->route('newAdmin')->with('success', 'Đã xóa tin tức');
         
     }
 }

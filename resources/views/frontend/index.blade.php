@@ -72,20 +72,20 @@
                                         <div class="product-grid" id="product-1168979"
                                             style="height: 420px; overflow: hidden;">
                                             <div class="image">
-                                                <a href="#"><img src="{{ asset('image/product/' . $item->image) }}"
+                                                <a href="{{ route('productDetail', ['id' => $item->id]) }}"><img src="{{ asset('image/product/' . $item->image) }}"
                                                         title="product ..." alt="$item->image" class="img-responsive"
                                                         style="height: 230px; width: 170px;"></a>
                                             </div>
                                             <div class="info">
-                                                <h3 class="name"><a href="#">{{ $item->name }}</a></h3>
+                                                <h3 class="name"><a href="{{ route('productDetail', ['id' => $item->id]) }}">{{ $item->name }}</a></h3>
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price"
                                                             style="text-decoration:line-through;">
-                                                            {{ $item->price }}</span> ₫
+                                                            {{number_format($item->price) }}</span> ₫
                                                     </span> </p>
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price">
-                                                            {{ $item->price - ($item->price * $item->discount) / 100 }}
+                                                            {{number_format($item->price - ($item->price * $item->discount) / 100 )}}
                                                         </span>₫
                                                     </span> </p>
                                                 <p class="price-box">
@@ -141,11 +141,11 @@
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price"
                                                             style="text-decoration:line-through;">
-                                                            {{ $item->price }}</span> ₫
+                                                            {{ number_format($item->price )}}</span> ₫
                                                     </span> </p>
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price">
-                                                            {{ $item->price - ($item->price * $item->discount) / 100 }}
+                                                            {{ number_format($item->price - ($item->price * $item->discount) / 100) }}
                                                         </span>₫
                                                     </span> </p>
                                                 <p class="price-box">

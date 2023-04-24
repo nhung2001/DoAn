@@ -26,7 +26,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('createSubCategory') }}" class="btn btn-success float-left m-2">Add
+                        <a href="{{ route('createSubCategory') }}" class="btn btn-success float-left m-2"
+                            style="background-color: #337ab7">Add
                             Sub_Category</a>
                     </div>
                     <div class="col-md-12">
@@ -42,15 +43,15 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <table class="table table-bordered">
-                            <thead>
+                        <table class="table table-bordered table-hover">
+                            <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Category</th>
+                                    <th scope="col">Category</th> 
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="background-color: #fff">
                                 @foreach ($subcategories as $subcategory)
                                     <tr>
                                         <td>{{ $subcategory->name }}</td>
@@ -58,9 +59,9 @@
 
                                         <td>
                                             <a href="{{ route('editSubCategory', [$subcategory->id]) }}"
-                                                class="btn btn-default">Edit</a>
-                                            <form action="{{ route('destroySubCategory', $subcategory->id) }}"
-                                                method="post">
+                                                class="btn d-inline btn-info">Edit</a>
+                                            <form class=" d-inline"
+                                                action="{{ route('destroySubCategory', $subcategory->id) }}" method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>

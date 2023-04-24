@@ -68,22 +68,25 @@
                     <!-- box search -->
                     <div class="panel panel-default" style="margin-top:15px;">
                         <div class="panel-heading"> Tìm theo mức giá </div>
-                        <div class="panel-body">
-                            <ul class="list-group" style="border:0px;">
-                                <li class="list-group-item" style="border:0px;">Giá từ &nbsp;&nbsp;
-                                    <input type="number" min="0" value="0" id="fromPrice"
-                                        class="form-control" />
-                                </li>
-                                <li class="list-group-item" style="border:0px;">Đến &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <input type="number" min="0" value="0" id="toPrice"
-                                        class="form-control" />
-                                </li>
-                                <li class="list-group-item" style="border:0px; text-align:center">
-                                    <input type="button" class="btn btn-warning" value="Tìm mức giá"
-                                        onclick="location.href =''" />
-                                </li>
-                            </ul>
-                        </div>
+                        <form action="{{ route('searchPrice') }}" method="POST">
+                            @csrf
+                            <div class="panel-body">
+                                <ul class="list-group" style="border:0px;">
+                                    <li class="list-group-item" style="border:0px;">Giá từ &nbsp;&nbsp;
+                                        <input type="number" min="0" value="0" id="min_price"
+                                            name="min_price" class="form-control" />
+                                    </li>
+                                    <li class="list-group-item" style="border:0px;">Đến &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <input type="number" min="0" value="0" id="max_price"
+                                            name="max_price" class="form-control" />
+                                    </li>
+                                    <li class="list-group-item" style="border:0px; text-align:center">
+                                        <button style="margin-top:5px;" class="btn btn-warning" type="submit">Tìm kiếm
+                                        </button>
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
                     </div>
                     <!-- end box search -->
 
@@ -101,7 +104,9 @@
                                                     alt="{{ $item->name }}" title="{{ $item->name }}"
                                                     class="img-responsive" style="height: 170px; width: 550px;"></a>
                                             <div class="info">
-                                                <h3><a href="" >{{ $item->name }}</a></h3>
+                                                <h3><a
+                                                        href="{{ route('newDetail', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                                </h3>
                                                 <p class="desc">
                                                 <p>{{ $item->description }}</p>
                                                 </p>
@@ -116,51 +121,51 @@
                 </div>
                 <div class="col-xs-12 col-md-9">
                     <!-- main -->
-                    @yield('content');
+                    @yield('content')
                     <!-- end main -->
                 </div>
             </div>
         </div>
     </div>
 
-        <!-- end hot news -->
+    <!-- end hot news -->
 
-        <div class="privacy">
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="image">
-                            <img src="{{ asset('frontend/themes/assets/ico-service-1221b.png?1481775169361') }}"
-                                alt="Giao hàng miễn phí" title="Giao hàng miễn phí" class="img-responsive">
-                        </div>
-                        <div class="info">
-                            <h3>Giao hàng miễn phí</h3>
-                            <p>Miễn phí giao hàng trong nội thành Hà Nội</p>
-                        </div>
+    <div class="privacy">
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 col-sm-4">
+                    <div class="image">
+                        <img src="{{ asset('frontend/themes/assets/ico-service-1221b.png?1481775169361') }}"
+                            alt="Giao hàng miễn phí" title="Giao hàng miễn phí" class="img-responsive">
                     </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="image">
-                            <img src="{{ asset('frontend/themes/assets/ico-service-2221b.png?1481775169361') }}"
-                                class="img-responsive" alt="Khuyến mại" title="Khuyến mại">
-                        </div>
-                        <div class="info">
-                            <h3>Khuyến mại</h3>
-                            <p>Khuyến mại sản phẩm nếu đơn hàng trên 1.000.000đ</p>
-                        </div>
+                    <div class="info">
+                        <h3>Giao hàng miễn phí</h3>
+                        <p>Miễn phí giao hàng trong nội thành Hà Nội</p>
                     </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <div class="image">
-                            <img src="{{ asset('frontend/themes/assets/ico-service-3221b.png?1481775169361') }}"
-                                class="img-responsive" alt="Hoàn trả lại tiền" title="Hoàn trả lại tiền">
-                        </div>
-                        <div class="info">
-                            <h3>Hoàn trả lại tiền</h3>
-                            <p>Nếu sản phẩm không đảm bảo chất lượng hoặc sản phẩm không đúng miêu tả</p>
-                        </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="image">
+                        <img src="{{ asset('frontend/themes/assets/ico-service-2221b.png?1481775169361') }}"
+                            class="img-responsive" alt="Khuyến mại" title="Khuyến mại">
+                    </div>
+                    <div class="info">
+                        <h3>Khuyến mại</h3>
+                        <p>Khuyến mại sản phẩm nếu đơn hàng trên 1.000.000đ</p>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-4">
+                    <div class="image">
+                        <img src="{{ asset('frontend/themes/assets/ico-service-3221b.png?1481775169361') }}"
+                            class="img-responsive" alt="Hoàn trả lại tiền" title="Hoàn trả lại tiền">
+                    </div>
+                    <div class="info">
+                        <h3>Hoàn trả lại tiền</h3>
+                        <p>Nếu sản phẩm không đảm bảo chất lượng hoặc sản phẩm không đúng miêu tả</p>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
     @include('frontend.layout.footer');
     <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}' type='text/javascript'>
     </script>

@@ -4,5 +4,5 @@
         Anything you want
     </div>
     <!-- Default to the left -->
-    <strong>Copyright &copy; 2023 <a href="https://adminlte.io">AdminBook.io</a>.</strong> All rights reserved.
+    <strong>2023 <a href="https://adminlte.io">AdminBook.io</a>.</strong> All rights reserved.
 </footer>

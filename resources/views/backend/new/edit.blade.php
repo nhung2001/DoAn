@@ -10,7 +10,16 @@
 @endsection
 
 @section('content')
-    <div class="content-wrapper">
+    <div class="content-wrapper" style="height:auto">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-6">
+                        <h1 class="m-0">Edit News</h1>
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.container-fluid -->
+        </div>
         <!-- Main content -->
         <div class="content">
             <div class="container-fluid">
@@ -20,13 +29,8 @@
                             @csrf
                             <div class="form-group">
                                 <label for="name">Name: </label>
-                                <input type="text" name="name" value="{{ $new->name }}"
-                                    class="form-control @error('name') is-invalid @enderror" id="name">
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input disabled type="text" name="name" value="{{ $new->name }}"
+                                    class="form-control " id="name">
                             </div>
                             <div class="form-group">
                                 <label for="description">Description: </label>
@@ -40,8 +44,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="content">Content: </label>
-                                <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror"
-                                    id="content">{{ $new->content }}</textarea>
+                                <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror" id="content">{{ $new->content }}</textarea>
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -50,7 +53,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="hot">Hot: </label>
-                                <select name="hot">
+                                <select name="hot" class="form-select form-control">
                                     <option value="Có"{{ $new->hot == '1' ? 'selected' : '' }}>Có</option>
                                     <option value="Không"{{ $new->hot == '0' ? 'selected' : '' }}>Không</option>
                                 </select>
@@ -60,7 +63,10 @@
                                 <input type="file" name="image" value="{{ $new->image }}" class="form-control "
                                     id="image">
                             </div>
-                            <button type="submit" class="btn btn-primary">Lưu</button>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary">Lưu</button>
+                                <a href="{{ route('newAdmin') }}" class="btn btn-secondary">Hủy</a>
+                            </div>
                         </form>
                     </div>
                 </div>

@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List New</h1>
+                        <h1 class="m-0">List News</h1>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -25,7 +25,8 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('createNew') }}" class="btn btn-success float-left m-2">Add New</a>
+                        <a href="{{ route('createNew') }}" class="btn btn-success float-left m-2"
+                            style="background-color: #337ab7">Add New</a>
                     </div>
                     <div class="col-md-12">
                         @if (session('success'))
@@ -40,30 +41,34 @@
                                 {{ session('error') }}
                             </div>
                         @endif
-                        <table class="table table-bordered" >
-                            <thead>
+                        <table class="table table-bordered table-hover">
+                            <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
                                     <th scope="col">Description</th>
-                                    <th scope="col">Content</th>
+                                    {{-- <th scope="col">Content</th> --}}
                                     <th scope="col">Hot</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody style="background-color: #fff">
                                 @foreach ($news as $new)
                                     <tr>
                                         <th scope="row">{{ $new->id }}</th>
-                                        <td><img width="50px" height="150px" src="{{ asset('image/new/'. $new->image) }}"></td>
+                                        <td><img style="height: 100px; width: 80px;"
+                                                src="{{ asset('image/new/' . $new->image) }}">
+                                        </td>
                                         <td>{{ $new->name }}</td>
-                                        <td>{{ $new->description}}</td>
-                                        <td>{{ $new->content }}</td>
+                                        <td>{{ $new->description }}</td>
+                                        {{-- <td>{{ $new->content }}</td> --}}
                                         <td>{{ $new->hot }}</td>
                                         <td>
-                                            <a href="{{ route('editNew', [$new->id]) }}" class="btn btn-default">Edit</a>
-                                            <form action="{{ route('destroyNew', $new->id) }}" method="post">
+                                            <a href="{{ route('editNew', [$new->id]) }}"
+                                                class="btn d-inline btn-info">Edit</a>
+                                            <form class=" d-inline" action="{{ route('destroyNew', $new->id) }}"
+                                                method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>
