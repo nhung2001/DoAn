@@ -1,11 +1,10 @@
 @extends('backend.layout.master')
 
 @section('title')
-    <title>List Product</title>
+    <title>List Orders</title>
 
 @section('sidebar')
     @parent
-
     <p>This is appended to the master sidebar.</p>
 @endsection
 
@@ -15,7 +14,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List Product</h1>
+                        <h1 class="m-0">List Orders</h1>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -24,10 +23,7 @@
         <div class="content">
             <div class="container-fluid">
                 <div class="row">
-                    <div class="col-md-12">
-                        <a href="{{ route('createProduct') }}" class="btn btn-success float-left m-2"
-                            style="background-color: #337ab7">Add Product</a>
-                    </div>
+
                     <div class="col-md-12">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show">
@@ -35,44 +31,49 @@
                                 {{ session('success') }}
                             </div>
                         @endif
+                        @if (session('error'))
+                            <div class="alert alert-success alert-dismissable fade show">
+                                <button class="close" data-dismiss="alert" aria-label="Close">×</button>
+                                {{ session('error') }}
+                            </div>
+                        @endif
                         <table class="table table-bordered table-hover">
                             <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Image</th>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Price</th>
-                                    <th scope="col">Discount</th>
-                                    <th scope="col">Quantity</th>
-                                    <th scope="col">Author</th>
-                                    {{-- <th scope="col">Description</th> --}}
-                                    <th scope="col">Category</th>
-                                    <th scope="col">Hot</th>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Người nhận</th>
+                                    <th scope="col">Địa chỉ</th>
+                                    <th scope="col">Số điện thoại</th>
+                                    <th scope="col">Tổng tiền</th>
+                                    <th scope="col">Ngày tạo</th>
+                                    <th scope="col">Trạng thái</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
                             <tbody style="background-color: #fff">
-                                @foreach ($products as $product)
+                                @foreach ($orders as $item)
                                     <tr>
-                                        <th scope="row">{{ $product->id }}</th>
-                                        <td><img style="height: 100px; width: 80px;"
-                                                src="{{ asset('image/product/' . $product->image) }}"></td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->discount }}</td>
-                                        <td>{{ $product->quantity }}</td>
-                                        <td>{{ $product->author }}</td>
-                                        {{-- <td>{{ $product->description }}</td> --}}
-                                        <td>{{ $product->sub_categories->name }}</td>
-                                        @if ($product->hot == 1)
-                                            <td>Có</td>
+                                        <td>{{ $item->id }}</td>
+                                        <td>{{ $item->users->name }}</td>
+                                        <td>{{ $item->users->address }}</td>
+                                        <td>{{ $item->users->phone }}</td>
+                                        {{-- <td> {{ money_format('%i', $item->total) }}</td> --}}
+                                        <td>{{ $item->total }}</td>
+                                        {{-- <td>{{ number_format($item->total, 0, ',', '.')}}</td> --}}
+                                        <td>{{ $item->created_at->format('D d/m/Y') }}</td>
+                                        @if ($item->status == 0)
+                                            <td>Đang xử lý</td>
+                                        @elseif($item->status == 1)
+                                            <td>Đang giao hàng</td>
                                         @else
-                                            <td>không</td>
+                                            <td>Giao hàng thành công</td>
                                         @endif
                                         <td>
-                                            <a href="{{ route('editProduct', [$product->id]) }}"
+                                            <a href="{{ route('orderEdit', $item->id) }}"
                                                 class="btn d-inline btn-info">Edit</a>
-                                            <form class=" d-inline" action="{{ route('destroyProduct', $product->id) }}"
+                                            <a href="{{ route('orderShow', $item->id) }}" class="btn d-inline btn-info">Chi
+                                                Tiết</a>
+                                            <form class="d-inline" action="{{ route('orderDelete', $item->id) }}"
                                                 method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
@@ -85,7 +86,7 @@
                         </table>
                     </div>
                     <div class="col-md-12">
-                        {{ $products->links('pagination::bootstrap-4') }}
+                        {{ $orders->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
                 <!-- /.row -->

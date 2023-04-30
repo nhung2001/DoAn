@@ -28,10 +28,10 @@
                 <p class="login-box-msg">Đăng nhập với vai trò quản trị</p>
                 <p>
                     @if (session('auth'))
-                        <div class="alert alert-danger">{{ session('auth') }}</div>                  
+                        <div class="alert alert-danger">{{ session('auth') }}</div>
                     @endif
                     @if (session('error'))
-                        <div class="alert alert-danger">{{ session('error') }}</div>                  
+                        <div class="alert alert-danger">{{ session('error') }}</div>
                     @endif
                 </p>
 
@@ -68,14 +68,14 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-8">
+                        {{-- <div class="col-8">
                             <div class="icheck-primary">
                                 <input type="checkbox" id="remember">
                                 <label for="remember">
                                     Lưu tài khoản
                                 </label>
                             </div>
-                        </div>
+                        </div> --}}
                         <!-- /.col -->
                         <div class="col-4">
                             <button type="submit" class="btn btn-primary btn-block">Login</button>

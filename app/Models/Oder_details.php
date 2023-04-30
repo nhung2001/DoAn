@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Oder_details extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'order_details';
 
     protected $fillable = [
         'price',
@@ -22,4 +23,13 @@ class Oder_details extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    public function products()
+    {
+        return $this->belongsTo(products::class);
+    }
+    public function orders()
+    {
+        return $this->belongsTo(Orders::class);
+    }
 }

@@ -68,45 +68,55 @@
                             <div id="content-taba4" class="content-tab content-tab-proindex">
                                 <!-- box product -->
                                 @foreach ($hotProducts as $item)
-                                    <div class="col-xs-6 col-md-2 col-sm-6 ">
-                                        <div class="product-grid" id="product-1168979"
-                                            style="height: 420px; overflow: hidden;">
-                                            <div class="image">
-                                                <a href="{{ route('productDetail', ['id' => $item->id]) }}"><img src="{{ asset('image/product/' . $item->image) }}"
-                                                        title="product ..." alt="$item->image" class="img-responsive"
-                                                        style="height: 230px; width: 170px;"></a>
-                                            </div>
-                                            <div class="info">
-                                                <h3 class="name"><a href="{{ route('productDetail', ['id' => $item->id]) }}">{{ $item->name }}</a></h3>
-                                                <p class="price-box"> <span class="special-price"> <span
-                                                            class="price product-price"
-                                                            style="text-decoration:line-through;">
-                                                            {{number_format($item->price) }}</span> ₫
-                                                    </span> </p>
-                                                <p class="price-box"> <span class="special-price"> <span
-                                                            class="price product-price">
-                                                            {{number_format($item->price - ($item->price * $item->discount) / 100 )}}
-                                                        </span>₫
-                                                    </span> </p>
-                                                <p class="price-box">
-                                                    <a href="#"><img src="{{ asset('frontend/image/star.jpg') }}"></a>
-                                                    <a href="#"><img
-                                                            src="{{ asset('frontend/image/star.jpg') }}"></a>
-                                                    <a href="#"><img
-                                                            src="{{ asset('frontend/image/star.jpg') }}"></a>
-                                                    <a href="#"><img
-                                                            src="{{ asset('frontend/image/star.jpg') }}"></a>
-                                                    <a href="#"><img
-                                                            src="{{ asset('frontend/image/star.jpg') }}"></a>
-                                                </p>
-                                                <div class="action-btn">
-                                                    <form>
-                                                        <a href="#" class="button">Add to Cart</a>
-                                                    </form>
+                                    <form action="{{ route('addCart') }}" method="post">
+                                        @csrf
+                                        <div class="col-xs-6 col-md-2 col-sm-6 ">
+                                            <div class="product-grid" id="product-1168979"
+                                                style="height: 420px; overflow: hidden;">
+                                                <div class="image">
+                                                    <a href="{{ route('productDetail', ['id' => $item->id]) }}"><img
+                                                            src="{{ asset('image/product/' . $item->image) }}"
+                                                            title="product ..." alt="$item->image" class="img-responsive"
+                                                            style="height: 230px; width: 170px;"></a>
+                                                </div>
+                                                <div class="info">
+                                                    <h3 class="name"><a
+                                                            href="{{ route('productDetail', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                                    </h3>
+                                                    <p class="price-box"> <span class="special-price"> <span
+                                                                class="price product-price"
+                                                                style="text-decoration:line-through;">
+                                                                {{ number_format($item->price) }}</span> ₫
+                                                        </span> </p>
+                                                    <p class="price-box"> <span class="special-price"> <span
+                                                                class="price product-price">
+                                                                {{ number_format($item->price - ($item->price * $item->discount) / 100) }}
+                                                            </span>₫
+                                                        </span> </p>
+                                                    <p class="price-box">
+                                                        <a href="#"><img
+                                                                src="{{ asset('frontend/image/star.jpg') }}"></a>
+                                                        <a href="#"><img
+                                                                src="{{ asset('frontend/image/star.jpg') }}"></a>
+                                                        <a href="#"><img
+                                                                src="{{ asset('frontend/image/star.jpg') }}"></a>
+                                                        <a href="#"><img
+                                                                src="{{ asset('frontend/image/star.jpg') }}"></a>
+                                                        <a href="#"><img
+                                                                src="{{ asset('frontend/image/star.jpg') }}"></a>
+                                                    </p>
+                                                    <input name="qty" type="hidden" min="1" value="1" />
+                                                    <input name="productid_hidden" type="hidden"
+                                                        value="{{ $item->id }}" />
+                                                    <div class="action-btn">
+
+                                                        <button class="button" type="submit">Add to cart</button>
+
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </form>
                                 @endforeach
 
                                 <!-- end box product -->
@@ -132,16 +142,19 @@
                                         <div class="product-grid" id="product-1168979"
                                             style="height: 420px; overflow: hidden;">
                                             <div class="image">
-                                                <a href="#"><img src="{{ asset('image/product/' . $item->image) }}"
+                                                <a href="{{ route('productDetail', ['id' => $item->id]) }}"><img
+                                                        src="{{ asset('image/product/' . $item->image) }}"
                                                         title="product ..." alt="$item->image" class="img-responsive"
                                                         style="height: 230px; width: 170px;"></a>
                                             </div>
                                             <div class="info">
-                                                <h3 class="name"><a href="#">{{ $item->name }}</a></h3>
+                                                <h3 class="name"><a
+                                                        href="{{ route('productDetail', ['id' => $item->id]) }}">{{ $item->name }}</a>
+                                                </h3>
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price"
                                                             style="text-decoration:line-through;">
-                                                            {{ number_format($item->price )}}</span> ₫
+                                                            {{ number_format($item->price) }}</span> ₫
                                                     </span> </p>
                                                 <p class="price-box"> <span class="special-price"> <span
                                                             class="price product-price">
@@ -189,7 +202,8 @@
                                                     alt="{{ $item->name }}" title="{{ $item->name }}"
                                                     class="img-responsive" style="height: 140px; width: 260px;"></a>
                                             <div class="info">
-                                                <h3><a class="text3line" href=""
+                                                <h3><a class="text3line"
+                                                        href="{{ route('newDetail', ['id' => $item->id]) }}"
                                                         style="font-weight: bold;">{{ $item->name }}</a></h3>
                                                 <p class="desc"> {{ $item->description }}</p>
                                             </div>

@@ -92,9 +92,13 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id)
     {
+        if($request->hot == 'Có'){
+            $hot = 1;
+        }else{
+            $hot = 0;
+        }
         $request->validate(
             [
-                'name' => 'required|string|max:200|unique:products,name',
                 'price' => 'required|numeric|min:0',
                 'quantity' => 'required|integer',
                 'discount' => 'required|numeric|min:0|max:100',
@@ -103,8 +107,6 @@ class ProductController extends Controller
                 'description' => 'required|string|max:1000',
             ],
             [
-                'name.required' => 'Vui lòng nhập tên sản phẩm',
-                'name.unique' => 'Tên sản phẩm đã tồn tại',
                 'price.required' => 'Vui lòng nhập giá sản phẩm',
                 'price.numeric' => 'Giá sản phẩm là số dương',
                 'price.min' => 'Giá không được âm',
@@ -119,6 +121,7 @@ class ProductController extends Controller
             ]
         );
         $image = $request->image;
+        $product = Products::find($id);
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $filename = $file->getClientOriginalName();
@@ -135,10 +138,9 @@ class ProductController extends Controller
             $image = $product->image;
         }
         $product->update([
-            'name' => $request->name,
             'image' => $image,
             'price' => $request->price,
-            'hot' => $request->hot,
+            'hot' => $hot,
             'discount' => $request->discount,
             'quantity' => $request->quantity,
             'author' => $request->author,
@@ -152,7 +154,4 @@ class ProductController extends Controller
         $product = Products::find($id)->delete();
         return redirect()->route('product')->with('success', 'Đã xóa sản phẩm');
     }
-
-
-    
 }

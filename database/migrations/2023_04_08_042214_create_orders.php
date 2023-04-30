@@ -19,14 +19,8 @@ return new class extends Migration
             $table->tinyInteger('status');
             $table->double('total');
 
-            $table->foreignId('shipping_id')->nullable()
-                ->constrained('shipping')
-                ->onDelete('cascade');
             $table->foreignId('users_id')->nullable()
                 ->constrained('users')
-                ->onDelete('cascade');
-            $table->foreignId('payments_id')->nullable()
-                ->constrained('payments')
                 ->onDelete('cascade');
             $table->timestamps();
             $table->softDeletes();

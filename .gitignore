@@ -17,7 +17,4 @@ yarn-error.log
 /public/frontend
 /public/image
 /public/assets
-/resources/views/frontend/page/cart.blade.php
-/resources/views/frontend/page/login.blade.php
-/resources/views/frontend/page/productCategory.blade.php
-/resources/views/frontend/page/register.blade.php
+# /resources/views/frontend/page/cart.blade.php

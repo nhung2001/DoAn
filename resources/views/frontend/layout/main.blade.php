@@ -13,27 +13,27 @@
     <meta name="keywords" content="">
     <title>NShop</title>
     <link rel="canonical" href="index.html">
-    <link rel="shortcut icon"
-        href="{{ asset('frontend/themes/assets/nshop5.jpg') }}"
-        type="image/x-icon" />
+    <link rel="shortcut icon" href="{{ asset('frontend/themes/assets/nshop5.jpg') }}" type="image/x-icon" />
     <!-- <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&amp;subset=vietnamese" rel="stylesheet"> -->
-    <link href='{{ asset('/frontend/themes/assets/font-awesome.min221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
-    <link href='{{ asset('frontend/themes/assets/bootstrap.min221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
-    <link href='{{ asset('frontend/themes/assets/owl.carousel221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
-    <link href='{{ asset('frontend/themes/assets/responsive221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
-    <link href='{{ asset('frontend/themes/assets/styles.scss221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
-    <script src='{{ asset('frontend/themes/assets/jquery.min221b.js?1481775169361') }}'
-        type='text/javascript'></script>
-    <script src='{{ asset('frontend/themes/assets/bootstrap.min221b.js?1481775169361') }}'
-        type='text/javascript'></script>
+    <link href='{{ asset('/frontend/themes/assets/font-awesome.min221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <link href='{{ asset('frontend/themes/assets/bootstrap.min221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <link href='{{ asset('frontend/themes/assets/owl.carousel221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <link href='{{ asset('frontend/themes/assets/responsive221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <link href='{{ asset('frontend/themes/assets/styles.scss221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <script src='{{ asset('frontend/themes/assets/jquery.min221b.js?1481775169361') }}' type='text/javascript'></script>
+    <script src='{{ asset('frontend/themes/assets/bootstrap.min221b.js?1481775169361') }}' type='text/javascript'></script>
     <script src='{{ asset('frontend/assets/themes_support/api.jquerya87f.js?4') }}' type='text/javascript'></script>
-    <link href='{{ asset('frontend/themes/assets/bw-statistics-style221b.css?1481775169361') }}'
-        rel='stylesheet' type='text/css' />
+    <link href='{{ asset('frontend/themes/assets/bw-statistics-style221b.css?1481775169361') }}' rel='stylesheet'
+        type='text/css' />
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css'
+        integrity='sha512-7di+35mBKhD9X/fv0mJW+sP4o/q4dGDV1pM8FwMPYHeZIe1SquX9vLzQJPo5Lu5f5QDy5PXvHG8q6W04a6ZLg=='
+        crossorigin='anonymous' referrerpolicy='no-referrer' />
+
 </head>
 
 <body class="index">
@@ -78,16 +78,14 @@
         </div>
     </div>
     @include('frontend.layout.footer');
-    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}'
-        type='text/javascript'></script>
-    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}'
-        type='text/javascript'></script>
-    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}'
-        type='text/javascript'></script>
-    <script src='{{ asset('frontend/themes/assets/main221b.js?1481775169361') }}'
-        type='text/javascript'></script>
-    <script src='{{ asset('frontend/themes/assets/ajax-cart221b.js?1481775169361') }}'
-        type='text/javascript'></script>
+    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}' type='text/javascript'>
+    </script>
+    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}' type='text/javascript'>
+    </script>
+    <script src='{{ asset('frontend/themes/assets/owl.carousel.min221b.js?1481775169361') }}' type='text/javascript'>
+    </script>
+    <script src='{{ asset('frontend/themes/assets/main221b.js?1481775169361') }}' type='text/javascript'></script>
+    <script src='{{ asset('frontend/themes/assets/ajax-cart221b.js?1481775169361') }}' type='text/javascript'></script>
 </body>
 
 </html>

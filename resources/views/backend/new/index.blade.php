@@ -62,8 +62,11 @@
                                         </td>
                                         <td>{{ $new->name }}</td>
                                         <td>{{ $new->description }}</td>
-                                        {{-- <td>{{ $new->content }}</td> --}}
-                                        <td>{{ $new->hot }}</td>
+                                        @if ($new->hot == 1)
+                                            <td>Có</td>
+                                        @else
+                                            <td>không</td>
+                                        @endif
                                         <td>
                                             <a href="{{ route('editNew', [$new->id]) }}"
                                                 class="btn d-inline btn-info">Edit</a>

@@ -72,7 +72,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="" class="nav-link">
+                    <a href="{{ route('orderIndex') }}" class="nav-link">
                         <i class="fa-brands fa-jedi-order"></i>
                         <p>
                             Quản lý đơn hàng

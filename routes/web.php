@@ -29,6 +29,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewController;
+use App\Http\Controllers\OrderController;
 
 Route::prefix('admin')->middleware('CheckLogin')->group(function () {
 
@@ -74,11 +75,20 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     Route::get('/editNew/{id}', [NewController::class, 'edit'])->middleware('CheckLogin')->name('editNew');
     Route::post('/updateNew/{id}', [NewController::class, 'update'])->middleware('CheckLogin')->name('updateNew');
     Route::post('/destroyNew/{id}', [NewController::class, 'destroy'])->middleware('CheckLogin')->name('destroyNew');
+
+    //order
+    Route::post('/order', [OrderController::class, 'store'])->middleware('CheckLogin')->name('order');
+    Route::get('/orderIndex', [OrderController::class, 'index'])->middleware('CheckLogin')->name('orderIndex');
+    Route::get('/orderEdit/{id}', [OrderController::class, 'edit'])->middleware('CheckLogin')->name('orderEdit');
+    Route::post('/orderUpdate/{id}', [OrderController::class, 'update'])->middleware('CheckLogin')->name('orderUpdate');
+    Route::post('/orderDelete/{id}', [OrderController::class, 'destroy'])->middleware('CheckLogin')->name('orderDelete');
+    Route::get('/show/{id}', [OrderController::class, 'show'])->middleware('CheckLogin')->name('orderShow');
+    Route::get('order/pdf/{id}', [OrderController::class, 'pdf'])->middleware('CheckLogin')->name('orderPdf');
 });
 
 //user
 use App\Http\Controllers\HomeController;
-
+use App\Http\Controllers\cartController;
 
 Route::prefix('user')->group(function () {
 
@@ -93,12 +103,30 @@ Route::prefix('user')->group(function () {
     Route::get('/newDetail{id}', [HomeController::class, 'newDetail'])->name('newDetail');
     Route::get('/homeView', [HomeController::class, 'home'])->name('homeView');
 
+    //login
+    Route::get('/viewLoginUser', [HomeController::class, 'viewLogin'])->name('viewLoginUser');
+    Route::post('/loginUser', [HomeController::class, 'login'])->name('loginUser');
+    Route::get('/logout', [HomeController::class, 'logout'])->name('user.logout');
+
+    //register
+    Route::get('/viewRegister', [HomeController::class, 'viewRegister'])->name('viewRegister');
+    Route::post('/Register', [HomeController::class, 'register'])->name('register');
 
     //product
     Route::get('/productDetail{id}', [HomeController::class, 'productDetail'])->name('productDetail');
     Route::any('/searchName', [HomeController::class, 'searchName'])->name('searchName');
     Route::any('/searchPrice', [HomeController::class, 'searchPrice'])->name('searchPrice');
+    Route::get('/productCategory/{id}', [HomeController::class, 'productCategory'])->name('productCategory');
+    Route::get('/productSubCategory/{id}', [HomeController::class, 'productSubCategory'])->name('productSubCategory');
 
-    //category
-    // Route::get('/categoryUser', [HomeController::class, 'categoryUser'])->name('categoryUser');
+    //cart
+    Route::get('/cart', [cartController::class, 'index'])->middleware('CheckLoginUser')->name('cart');
+    Route::post('/addCart', [cartController::class, 'save'])->middleware('CheckLoginUser')->name('addCart');
+    Route::get('/deleteCart/{rowId}', [cartController::class, 'delete'])->middleware('CheckLoginUser')->name('deleteCart');
+    Route::post('/updateCart', [cartController::class, 'update'])->middleware('CheckLoginUser')->name('updateCart');
+    Route::get('/clearCart', [cartController::class, 'clearCart'])->middleware('CheckLoginUser')->name('clearCart');
+
+    // order
+    Route::get('/listOrder', [HomeController::class, 'listOrder'])->middleware('CheckLoginUser')->name('listOrder');
+    Route::get('/orderDetail{id}', [HomeController::class, 'orderDetail'])->middleware('CheckLoginUser')->name('orderDetail');
 });

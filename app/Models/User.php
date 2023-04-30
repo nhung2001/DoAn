@@ -11,6 +11,7 @@ class User extends Authenticatable
     use HasFactory, SoftDeletes;
 
     //role
+    protected $table = 'Users';
     public const ROLE_CUSTOMER = 0;
     public const ROLE_STAFF = 1;
     public const ROLE_ADMIN_ROOT = 2;
@@ -38,5 +39,8 @@ class User extends Authenticatable
         'updated_at',
         'deleted_at',
     ];
+    public function orders()
+    {
+        return $this->hasMany(Orders::class);
+    }
 }
-

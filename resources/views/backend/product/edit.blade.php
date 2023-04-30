@@ -102,8 +102,13 @@
                             </div>
                             <div class="form-group">
                                 <label for="image">Image: </label>
-                                <input type="file" name="image" value="{{ $product->image }}" class="form-control "
+                                <input type="file" name="image" value="{{ $product->image }}" class="form-control @error('image') is-invalid @enderror"
                                     id="image">
+                                @error('image')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Tạo</button>
