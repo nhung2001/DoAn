@@ -47,7 +47,7 @@
                                     <th scope="col">No</th>
                                     <th scope="col">Image</th>
                                     <th scope="col">Name</th>
-                                    <th scope="col">Description</th>
+                                    {{-- <th scope="col">Description</th> --}}
                                     {{-- <th scope="col">Content</th> --}}
                                     <th scope="col">Hot</th>
                                     <th scope="col">Action</th>
@@ -57,11 +57,11 @@
                                 @foreach ($news as $new)
                                     <tr>
                                         <th scope="row">{{ $new->id }}</th>
-                                        <td><img style="height: 100px; width: 80px;"
+                                        <td><img style="height: 80px; width: 100px;"
                                                 src="{{ asset('image/new/' . $new->image) }}">
                                         </td>
                                         <td>{{ $new->name }}</td>
-                                        <td>{{ $new->description }}</td>
+                                        {{-- <td>{{ $new->description }}</td> --}}
                                         @if ($new->hot == 1)
                                             <td>Có</td>
                                         @else

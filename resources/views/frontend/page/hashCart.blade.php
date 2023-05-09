@@ -1,59 +1,57 @@
 @extends('frontend.layout.pages')
-@section('title', 'Contact')
-@section('content')
-    <div class="template-cart">
-        <?php
-        $content = Cart::content();
-        ?>
+@section('title', 'Hash ')
 
+@section('content')
+    <div class="content-wrapper" style="height:auto">
+        <div class="content-header">
+            <div class="container-fluid">
+                <div class="row mb-2">
+                    <div class="col-sm-12">
+
+                        <h2>Đặt hàng thành công.</h2>
+                        <h3>Cảm ơn bạn đã đặt hàng trên website của chúng tôi! Nhân viên giao hàng sẽ liên hệ với bạn sớm
+                            nhất có
+                            thể.</h3>
+                        <h4>Danh sách sản phẩm đã đặt</h4>
+                    </div>
+
+                </div>
+            </div>
+        </div>
         <div class="table-responsive">
             <table class="table table-cart">
-                <h2>Đặt hàng thành công.</h2>
-                <h3>Cảm ơn bạn đã đặt hàng trên website của chúng tôi! Nhân viên giao hàng sẽ liên hệ với bạn sớm nhất có
-                    thể.</h3>
                 <thead>
                     <tr>
-                        <th class="image">Ảnh sản phẩm</th>
-                        <th class="name">Tên sản phẩm</th>
-                        <th class="price">Giá bán</th>
-                        <th class="quantity">Số lượng</th>
-                        <th class="price">Thành tiền</th>
+                        <th scope="col">Ảnh sản phẩm</th>
+                        <th scope="col">Tên sản phẩm</th>
+                        <th scope="col">Giá bán</th>
+                        <th scope="col">Số lượng</th>
+                        {{-- <th scope="col">Giảm giá</th> --}}
+                        <th scope="col">Thành tiền</th>
                     </tr>
                 </thead>
-                <tbody>
-                    {{-- <form action="{{ route('update_cart') }}" method="post">
-                        @foreach ($content as $item)
-                            {{ csrf_field() }}
-                            <tr>
-                                <td><img src="{{ asset('image/product/' . $item->options->image) }}" class="img-responsive"
-                                        style="height: 109px; width: 85px; margin-left: 10px;" /></td>
-                                <td><a href="">{{ $item->name }}</a></td>
-                                <td> {{ number_format($item->price) }}₫ </td>
-                                <td>
-                                    <input disabled type="number" id="quantity{{ $item->rowId }}"
-                                        name="quantities[{{ $item->rowId }}]" value="{{ $item->qty }}" min="1">
-                                </td>
-                                <td>
-                                    <p><b>{{ number_format(($item->price - ($item->price * $item->discount) / 100) * $item->qty) }}₫</b>
-                                    </p>
-                                </td>
-                            </tr>
-                        @endforeach
-                    </form> --}}
+                <tbody style="background-color: #fff">
+                    @foreach ($orderDetails as $item)
+                        <tr>
+                            <td><img width="100px" height="100px"
+                                    src="{{ asset('image/product/' . $item->products->image) }}"></td>
+                            <td>{{ $item->products->name }}</td>
+                            <td>{{ number_format($item->price) }}</td>
+                            <td>{{ $item->quantity }}</td>
+                            {{-- <td>{{ $item->products->discount }}%</td> --}}
+                            <td>{{ number_format(($item->price - ($item->price * $item->discount) / 100) * $item->quantity) }}
+                            </td>
+                        </tr>
+                    @endforeach
                 </tbody>
-                <tfoot>
-                    <!-- co the goi h am trong CartModel -->
-                    <tr>
-                        {{-- <td colspan="6">
-                            <a href="{{ route('home_user') }}" class="button pull-right black">Tiếp tục mua hàng</a>
-                        </td> --}}
-                    </tr>
-                </tfoot>
+                {{-- <tr>
+                    <th colspan="6">
+                        <h5><b>Tổng tiền: {{ $item->orders->total }}₫</b></h5>
+                    </th>
+                </tr> --}}
             </table>
+            <div class="total-cart"><h5><b>Tổng tiền: {{ $order->total }}₫</b></h5>
+                {{-- {{ Cart::subtotal(0, ',', ',') }} ₫ <br> --}}
         </div>
-        {{-- <div class="total-cart"> Tổng tiền thanh toán:
-            {{ Cart::subtotal(0, ',', ',') }} ₫ <br>
-            <a href="" class="button black">Thanh toán</a>
-        </div> --}}
     </div>
 @endsection

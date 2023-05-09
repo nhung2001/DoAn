@@ -30,11 +30,14 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MailController;
 
 Route::prefix('admin')->middleware('CheckLogin')->group(function () {
 
     //home
     Route::get('/home', [HomeAdminController::class, 'index'])->middleware('CheckLogin')->name('home');
+    Route::get('/dashboard', [DashboardController::class, 'index'])->middleware('CheckLogin')->name('dashboard');
 
     //user
     Route::get('/user', [UserController::class, 'index'])->middleware('CheckLogin')->name('user');
@@ -84,6 +87,12 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     Route::post('/orderDelete/{id}', [OrderController::class, 'destroy'])->middleware('CheckLogin')->name('orderDelete');
     Route::get('/show/{id}', [OrderController::class, 'show'])->middleware('CheckLogin')->name('orderShow');
     Route::get('order/pdf/{id}', [OrderController::class, 'pdf'])->middleware('CheckLogin')->name('orderPdf');
+
+    //send mail
+    Route::get('/mail', [MailController::class, 'index'])->middleware('CheckLogin')->name('mail');
+    Route::post('/sendMail', [MailController::class, 'sendMail'])->middleware('CheckLogin')->name('sendMail');
+    Route::get('/mailForm', [MailController::class, 'mailForm'])->middleware('CheckLogin')->name('mailForm');
+    Route::get('/showMail{id}', [MailController::class, 'showMail'])->middleware('CheckLogin')->name('showMail');
 });
 
 //user
@@ -98,9 +107,12 @@ Route::prefix('user')->group(function () {
     //contact
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
+    // favorite
+    route::get('/favorite', [HomeController::class, 'favorite'])->name('favorite');
+    route::get('/addfavorite/{id}', [HomeController::class, 'addfavorite'])->middleware('CheckLoginUser')->name('addfavorite');
     //new
     Route::get('/new', [HomeController::class, 'new'])->name('new');
-    Route::get('/newDetail{id}', [HomeController::class, 'newDetail'])->name('newDetail');
+    Route::get('/newDetail/{id}', [HomeController::class, 'newDetail'])->name('newDetail');
     Route::get('/homeView', [HomeController::class, 'home'])->name('homeView');
 
     //login
@@ -123,10 +135,10 @@ Route::prefix('user')->group(function () {
     Route::get('/cart', [cartController::class, 'index'])->middleware('CheckLoginUser')->name('cart');
     Route::post('/addCart', [cartController::class, 'save'])->middleware('CheckLoginUser')->name('addCart');
     Route::get('/deleteCart/{rowId}', [cartController::class, 'delete'])->middleware('CheckLoginUser')->name('deleteCart');
-    Route::post('/updateCart', [cartController::class, 'update'])->middleware('CheckLoginUser')->name('updateCart');
+    Route::any('/updateCart', [cartController::class, 'update'])->middleware('CheckLoginUser')->name('updateCart');
     Route::get('/clearCart', [cartController::class, 'clearCart'])->middleware('CheckLoginUser')->name('clearCart');
 
     // order
-    Route::get('/listOrder', [HomeController::class, 'listOrder'])->middleware('CheckLoginUser')->name('listOrder');
-    Route::get('/orderDetail{id}', [HomeController::class, 'orderDetail'])->middleware('CheckLoginUser')->name('orderDetail');
+    Route::get('/listOrder', [OrderController::class, 'listOrder'])->middleware('CheckLoginUser')->name('listOrder');
+    Route::get('/orderDetail{id}', [OrderController::class, 'orderDetail'])->middleware('CheckLoginUser')->name('orderDetail');
 });

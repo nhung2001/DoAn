@@ -5,12 +5,12 @@
         <div class="tabs-container">
             <div class="row" style="margin-top:10px;">
                 <div class="head-tabs head-tab1 col-lg-3">
-                    {{-- <h2>
-                        {{ $sub_categories->name }}
-                    </h2> --}}
+                    <h2>
+                        {{-- {{ $products->$categories->id->name }} --}}
+                    </h2>
                 </div>
                 
-                <div class="col-lg-3 pull-right text-right">
+                {{-- <div class="col-lg-3 pull-right text-right">
                     <select class="form-control" onchange="location.href = ''+this.value;">
                         <option value="0">Sắp xếp</option>
                         <option selected value="priceAsc">Giá tăng dần</option>
@@ -18,7 +18,7 @@
                         <option selected value="nameAsc">Sắp xếp A-Z</option>
                         <option selected value="nameDesc">Sắp xếp Z-A</option>
                     </select>
-                </div>
+                </div> --}}
                 <div class="clearfix"></div>
             </div>
         </div>
@@ -58,6 +58,9 @@
                                         </p>
                                         <div class="action-btn">
                                             <form>
+                                                <a class="d-block" data-id="2479395">
+                                                    <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
+                                                </a>
                                                 <a href="" class="button">Add to Cart</a>
                                             </form>
                                         </div>

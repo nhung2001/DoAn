@@ -14,35 +14,26 @@
                         <th class="image">Ảnh sản phẩm</th>
                         <th class="name">Tên sản phẩm</th>
                         <th class="price">Giá bán</th>
-                        <th class="quantity">Số lượng</th>
-                        <th class="price">Thành tiền</th>
                         <th>Xóa</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <form action="{{ route('updateCart') }}" method="post">
-                        @foreach ($content as $item)
+                    <form action="" method="post">
+                        {{-- @foreach ($content as $item)
                             {{ csrf_field() }}
                             <tr>
-                                <td><img src="{{ asset('image/product/' . $item->options->image) }}" class="img-responsive"
+                                <td><img src="{{ asset('image/product/' . $item->image) }}" class="img-responsive"
                                         style="height: 109px; width: 85px; margin-left: 10px;" />
                                 </td>
                                 <td><a href="">{{ $item->name }}</a></td>
                                 <td>
                                     {{number_format($item->price)}}
-                                <td>
-                                    <input type="number" id="quantity_{{ $item->rowId }}"
-                                        name="quantities[{{ $item->rowId }}]" value="{{ $item->qty }}" min="1">
-                                </td>
-                                <td>
-                                    <p><b>{{ number_format($item->price * $item->qty) }}₫</b>
-                                    </p>
                                 </td>
                                 <td><a onclick="return confirm('Bạn có chắc chắn muốn xóa không?')"
-                                        href="{{ route('deleteCart', ['rowId' => $item->rowId]) }}" data-id="2479395"><i
+                                        href="" data-id="2479395"><i
                                             class="fa fa-trash"></i></a></td>
                             </tr>
-                        @endforeach
+                        @endforeach --}}
 
                 </tbody>
                 <tfoot>
@@ -50,21 +41,10 @@
                     <tr>
                         <td colspan="6"><a href="{{ route('clearCart') }}" class="button pull-left"
                                 onclick="return window.confirm('Bạn có muốn xóa hết không?')">Xóa toàn bộ</a>
-                            <a href="{{ route('home_user') }}" class="button pull-right black">Tiếp tục mua hàng</a>
-                            <input href="{{ route('updateCart') }}" type="submit" value="Cập nhật" name="update_qty"
-                                class="button pull-right">
                         </td>
                     </tr>
                 </tfoot>
             </table>
-            </form>
-        </div>
-        <div class="total-cart"> Tổng tiền thanh toán:
-            {{ Cart::subtotal(0, ',', ',') }} ₫ <br>
-            <form id="order-form" action="{{ route('order') }}" method="POST">
-                @csrf
-                <input type="submit" value="Thanh toán" name="update_qty" class="button pull-right"
-                    onclick="return window.confirm('Bạn có muốn thanh toán không?')" />
             </form>
         </div>
     </div>

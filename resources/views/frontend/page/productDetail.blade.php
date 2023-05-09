@@ -24,19 +24,19 @@
                 </p>
                 <a href="" class="btn btn-primary">Cho vào giỏ hàng</a>
                 <!-- rating -->
-                <div style="border:1px solid #dddddd; margin-top: 15px;">
+                {{-- <div style="border:1px solid #dddddd; margin-top: 15px;">
                     <h4 style="padding-left: 10px;">Rating</h4>
 
                     <br>
-                </div>
+                </div> --}}
                 <!-- /rating -->
+                <div class="middle" style="margin-top:20px; font-size: 16px; text-align: justify;">
+                    <!-- chi tiet -->
+                    {{ $product_Detail->description }}
+                    <!-- chi tiet -->
+                </div>
             </div>
         </div>
-    </div>
-    <div class="middle" style="margin-top:20px; font-size: 16px; text-align: justify;">
-        <!-- chi tiet -->
-        {{ $product_Detail->description }}
-        <!-- chi tiet -->
     </div><br/><br>
 
     {{-- sản phẩm tương tự --}}
@@ -46,7 +46,7 @@
             <div class="row" style="margin-top:10px;">
                 <div class="head-tabs head-tab1 col-lg-3">
                     <h2>
-                        SAME PRODUCT
+                       Có Thể Bạn Cũng Thích
                     </h2>
                 </div>
                 <div class="col-lg-3 pull-right text-right">
@@ -85,6 +85,9 @@
                                     </p>
                                     <div class="action-btn">
                                         <form>
+                                            <a class="d-block" data-id="2479395">
+                                                <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
+                                            </a>
                                             <a href="" class="button">Add to Cart</a>
                                         </form>
                                     </div>

@@ -27,15 +27,15 @@ class cartController extends Controller
         $data['qty'] = $quantity;
         $data['name'] = $products_info->name;
         $data['price'] = $products_info->price;
+        if ($products_info->discount > 0) {
+            $data['price'] = $products_info->price - ($products_info->price * $products_info->discount)/100;
+        } else {
+            $data['price'] = $products_info->price;
+        }
         $data['weight'] = 0;
         $data['options']['image'] = $products_info->image;
         Cart::add($data);
         Cart::setGlobalTax(0);
-        return redirect()->route('cart');
-    }
-    public function delete($rowId)
-    {
-        Cart::update($rowId, 0);
         return redirect()->route('cart');
     }
     // Lấy thông tin về số lượng sản phẩm từ form post
@@ -45,6 +45,11 @@ class cartController extends Controller
         foreach ($request->input('quantities') as $rowId => $quantity) {
             Cart::update($rowId, $quantity);
         }
+        return redirect()->route('cart');
+    }
+    public function delete($rowId)
+    {
+        Cart::update($rowId, 0);
         return redirect()->route('cart');
     }
     public function clearCart()

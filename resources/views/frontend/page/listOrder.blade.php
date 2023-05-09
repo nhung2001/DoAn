@@ -7,7 +7,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List Orders</h1>
+                        <h1 class="m-0">Danh sách đơn hàng</h1>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->

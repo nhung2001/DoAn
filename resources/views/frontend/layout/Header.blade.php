@@ -9,7 +9,9 @@
                 @if (Auth()->user())
                     <div class="col-xs-12 col-sm-6 col-md-6 customer"> <a href="#">Xin chào
                             {{ auth()->user()->email }}
+                        </a>&nbsp; &nbsp;<a href="{{ route('listOrder') }}">Đơn hàng</a>
                         </a>&nbsp; &nbsp;<a href="{{ route('user.logout') }}">Đăng xuất</a>
+                        
                     </div>
                     </form>
             </div>
@@ -31,57 +33,38 @@
                             title="Nshop" class="img-responsive"> </a> </div>
 
                 <!--tìm kiếm-->
-                <form method="post" id="key" action="{{ route('searchName') }}">
+                <form method="post" action="{{ route('searchName') }}">
                     @csrf
                     <div class="col-xs-12 col-sm-12 col-md-6 header-search">
                         <!--<form method="post" id="frm" action="">-->
                         <div style="margin-top:25px;" id="smart-search">
-                            <input type="text" onkeyup="searchAjax();" value="" placeholder="Nhập từ khóa tìm kiếm..."
-                                id="key" class="input-control">
-                            <button style="margin-top:5px;" type="submit"> <i class="fa fa-search"
-                                    onclick="location.href ='{{ route('searchName') }}'"></i> </button>
+                            <input type="text" value="" placeholder="Nhập từ khóa tìm kiếm..." name="keyword"
+                                class="input-control">
+                            <button style="margin-top:5px;" type="submit"> <i class="fa fa-search"></i> </button>
                         </div>
                         <!--</form>-->
                     </div>
                 </form>
 
-                <!--giỏ hàng-->
-                
+
+                <!--giỏ hàng, yêu thích-->
                 <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
+
                     <div class="wrapper-mini-cart"><a href="cart"> <span class="icon"><i
                                     class="fa fa-shopping-cart"></i></span>
-                            <a href="cart"> <span class="mini-cart-count"> {{  Cart::content()->unique('id')->count()  }} </span> sản phẩm <i
+
+                            <a href="cart"> <span class="mini-cart-count">
+                                    {{ Cart::content()->unique('id')->count() }} </span> sản phẩm <i
                                     class="fa fa-caret-down"></i></a>
-                            {{-- <div class="content-mini-cart">
-                                <div class="has-items">
-                                    <ul class="list-unstyled">
-                                        <li class="clearfix" id="item-1853038">
-                                            <div class="image"> <a href=""> <img alt="" src=""
-                                                        title="" class="img-responsive"> </a> </div>
-                                            <div class="info">
-                                                <h3><a href="">Macbook Air 13 128GB MQD32SA/A
-                                                        (2017)</a></h3>
-                                                <p>1 x 22,700,000₫</p>
-                                            </div>
-                                            <div> <a href="/Cart/Remove/11"> <i class="fa fa-times"></i></a> </div>
-                                        </li>
-                                        <li class="clearfix" id="item-1853038">
-                                            <div class="image"> <a href="/Product/Detail/8"> <img
-                                                        alt="Samsung Galaxy M20"
-                                                        src="assets/upload/products/132195020344748063_7.jpg"
-                                                        title="Samsung Galaxy M20" class="img-responsive"> </a> </div>
-                                            <div class="info">
-                                                <h3><a href="/Product/Detail/8">Samsung Galaxy M20</a></h3>
-                                                <p>1 x 27,000,000₫</p>
-                                            </div>
-                                            <div> <a href="/Cart/Remove/8"> <i class="fa fa-times"></i></a> </div>
-                                        </li>
-                                    </ul>
-                                    <a href="/Cart/Checkout" class="button">Thanh toán</a>
-                                </div>
-                            </div> --}}
+                    </div>
+
+                    <div class="wrapper-mini-cart"  style="margin-right: 12px"><a href="cart"> <span class="icon"><i
+                                    class="fa fa-heart"></i></span>
+                            <a href="cart"> <span class="mini-cart-count">
+                                </span> sản phẩm <i class="fa fa-caret-down"></i></a>
                     </div>
                 </div>
+
             </div>
         </div>
         <!-- end middle header -->
@@ -108,7 +91,7 @@
                     </ul>
                     </li>
 
-                    <li><a href="{{ route('listOrder')}}">Đơn hàng</a></li>
+                    {{-- <li><a href="{{ route('listOrder') }}">Đơn hàng</a></li> --}}
                     <li><a href="{{ route('new') }}">Tin tức</a></li>
                     <li><a href="{{ route('contact') }}">Liên hệ</a></li>
                     </ul>

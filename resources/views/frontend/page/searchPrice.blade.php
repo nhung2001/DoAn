@@ -45,6 +45,9 @@
                                     </p>
                                     <div class="action-btn">
                                         <form>
+                                            <a class="d-block" data-id="2479395">
+                                                <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
+                                            </a>
                                             <a href="" class="button">Add to Cart</a>
                                         </form>
                                     </div>
@@ -60,7 +63,7 @@
                         class="&#x70;&#x61;&#x67;&#x69;&#x6E;&#x61;&#x74;&#x69;&#x6F;&#x6E;&#x2D;&#x63;&#x6F;&#x6E;&#x74;&#x61;&#x69;&#x6E;&#x65;&#x72;">
                         <ul class="pagination">
                             <li class="page-item"><span>Trang</span></li>
-                            <li class="page-item">{{ $search_Price->links('pagination::bootstrap-4') }}
+                            {{-- <li class="page-item">{{ $search_Price->links('pagination::bootstrap-4') }} --}}
                             </li>
                         </ul>
                     </div>

@@ -73,13 +73,8 @@
                                                 class="btn d-inline btn-info">Edit</a>
                                             <a href="{{ route('orderShow', $item->id) }}" class="btn d-inline btn-info">Chi
                                                 Tiết</a>
-                                            <form class="d-inline" action="{{ route('orderDelete', $item->id) }}"
-                                                method="post">
-                                                @csrf
-                                                <button type="submit" class="btn btn-danger"
-                                                    onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>
-                                            </form>
                                         </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>

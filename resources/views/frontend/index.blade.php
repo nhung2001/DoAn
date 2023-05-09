@@ -59,7 +59,7 @@
                         <div class="tabs-container">
                             <div class="row" style="margin-top:10px;">
                                 <div class="head-tabs head-tab1 col-lg-11">
-                                    <h2>HOT PRODUCT</h2>
+                                    <h2>BÁN CHẠY</h2>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -108,8 +108,11 @@
                                                     <input name="qty" type="hidden" min="1" value="1" />
                                                     <input name="productid_hidden" type="hidden"
                                                         value="{{ $item->id }}" />
-                                                    <div class="action-btn">
-
+                                                    <div class="action-btn" >
+                                                        {{-- <button class="button" type="submit">Yêu thích</button> --}}
+                                                        <a class="d-block" href="{{ route('addfavorite', $item->id) }}" data-id="2479395">
+                                                            <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
+                                                        </a>
                                                         <button class="button" type="submit">Add to cart</button>
 
                                                     </div>
@@ -129,7 +132,7 @@
                         <div class="tabs-container">
                             <div class="row" style="margin-top:10px;">
                                 <div class="head-tabs head-tab1 col-lg-11">
-                                    <h2>SALES PRODUCT</h2>
+                                    <h2>GIẢM GIÁ NHIỀU</h2>
                                 </div>
                                 <div class="clearfix"></div>
                             </div>
@@ -175,6 +178,9 @@
                                                 </p>
                                                 <div class="action-btn">
                                                     <form>
+                                                        <a class="d-block" data-id="2479395">
+                                                            <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
+                                                        </a>
                                                         <a href="#" class="button">Add to Cart</a>
                                                     </form>
                                                 </div>

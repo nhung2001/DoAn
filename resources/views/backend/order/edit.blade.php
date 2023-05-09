@@ -34,6 +34,7 @@
                                     <option value="Đang xử lý"{{ $status->status == '0' ? 'selected' : '' }}>Đang xử lý</option>
                                     <option value="Đang giao hàng"{{ $status->status == '1' ? 'selected' : '' }}>Đang giao hàng</option>
                                     <option value="Đã giao hàng"{{ $status->status == '2' ? 'selected' : '' }}>Đã giao hàng</option>
+                                    {{-- <option value="Đã hủy"{{ $status->status == '3' ? 'selected' : '' }}>Đã hủy</option> --}}
                                 </select>
                             </div>
                             <div class="form-group">

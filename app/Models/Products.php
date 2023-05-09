@@ -40,4 +40,8 @@ class Products extends Model
     {
         return $this->belongsTo('App\Models\Sub_categories');
     }
+    public function favorite()
+    {
+        return $this->hasMany(favorite::class);
+    }
 }

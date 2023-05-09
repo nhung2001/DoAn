@@ -1,9 +1,9 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css"
     integrity="sha512-xh6O/CkQoPOWDdYTDqeRdPCVd1SpvCA9XXcUnZS2FmJNp1coAFzvtCN9BmamE+4aHK8yyUHUSCcJHgXloTyT2A=="
     crossorigin="anonymous" referrerpolicy="no-referrer" />
-<aside class="main-sidebar elevation-4" style="background-color: #4b5a64; "  >
+<aside class="main-sidebar elevation-4" style="background-color: #4b5a64; ">
     <!-- Brand Logo -->
-    <a href="" class="brand-link"  style="background-color:#367fa9; padding-left: 50px">
+    <a href="" class="brand-link" style="background-color:#367fa9; padding-left: 50px">
         <img src="{{ asset('AdminLTE-3.2.0/dist/img/nshop5.jpg') }}" alt="AdminLTE Logo"
             class="brand-image img-circle elevation-3">
         <span class="brand-text font-weight-light" style="color: #fff;"><b>NSHOP</b></span>
@@ -25,17 +25,27 @@
         <!-- SidebarSearch Form -->
 
         <!-- Sidebar Menu -->
-        <nav class="mt-2" >
+        <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                 data-accordion="false" style="color:#367fa9">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item menu-open" >
+                <li class="nav-item">
+                    <a href="{{ route('dashboard') }}" class="nav-link">
+                        <i class="fa-solid fa-house"></i>
+                        <p>
+                            Dashboard
+                            {{-- <span class="right badge badge-danger"></span> --}}
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item ">
+
                     <a href="#" class="nav-link active" style="background-color:#367fa9;">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
                         <p>
                             Quản lý danh mục
-                            <i class="right fas fa-angle-left"></i>
+                            <i class="right fas fa-angle-left "></i>
                         </p>
                     </a>
                     <ul class="nav nav-treeview">
@@ -91,6 +101,16 @@
                 </li>
 
                 <li class="nav-item">
+                    <a href="{{ route('mail') }}" class="nav-link">
+                        <i class="fa-solid fa-envelope"></i>
+                        <p>
+                            Gửi mail tới user
+                            <span class="right badge badge-danger"></span>
+                        </p>
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
                         <i class="fa-solid fa-right-from-bracket"></i>
                         <p>
@@ -107,11 +127,11 @@
 </aside>
 
 <style>
+    a.nav-link:hover {
+        color: #ffc107 !important;
+    }
 
-    a.nav-link:hover{
-        color:#ffc107!important;
-    } 
-    a.nav-link{
+    a.nav-link {
         color: #fff !important;
     }
 </style>

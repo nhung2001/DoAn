@@ -7,6 +7,7 @@ use App\Models\Products;
 use App\Models\News;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Categories;
+use App\Models\favorite;
 use App\Models\Orders;
 use App\Models\Sub_categories;
 use App\Models\User;
@@ -52,8 +53,8 @@ class HomeController extends Controller
     {
         $hotNew = News::where('hot', 1)->limit(4)->get();
         $categories = Categories::orderBy('name', 'asc')->get();
-        $key = $request->keyword;
-        $search_Name = Products::where('name', 'like', '%' . $key . '%')->paginate(2);
+
+        $search_Name = Products::where('name', 'like', '%' . $request->keyword . '%')->get();
         return view('frontend.page.searchName', compact('hotNew', 'search_Name', 'categories'));
     }
 
@@ -102,7 +103,7 @@ class HomeController extends Controller
         $hotNew = News::where('hot', 1)->limit(4)->get();
         $categories = Categories::orderBy('name', 'asc')->get();
         $products = Sub_categories::find($id)->products;
-        return view('frontend.page.productCategory', compact('products','categories', 'hotNew'));
+        return view('frontend.page.productCategory', compact('products', 'categories', 'hotNew'));
     }
 
     //đăng nhập
@@ -113,19 +114,19 @@ class HomeController extends Controller
     }
     public function login(Request $request)
     {
-        // $request->validate(
-        //     [
-        //         'email' => 'required|email',
-        //         'password' => 'required|min:8|max:10|string',
-        //     ],
-        //     [
-        //         'email.required' => 'Vui lòng nhập Email',
-        //         'email' => 'Vui nhập đúng định dạng Email',
-        //         'password.required' => 'Vui lòng nhập Password',
-        //         'min' => 'Password tối thiểu 8 ký tự',
-        //         'password.max' => 'Password tối đa 10 ký tự',
-        //     ]
-        // );
+        $request->validate(
+            [
+                'email' => 'required|email',
+                'password' => 'required|min:8|max:10|string',
+            ],
+            [
+                'email.required' => 'Vui lòng nhập Email',
+                'email' => 'Vui nhập đúng định dạng Email',
+                'password.required' => 'Vui lòng nhập Password',
+                'min' => 'Password tối thiểu 8 ký tự',
+                'password.max' => 'Password tối đa 10 ký tự',
+            ]
+        );
         $email = $request->email;
         $password = $request->password;
         $credentials = ['email' => $email, 'password' => $password, 'role' => 0];
@@ -133,7 +134,6 @@ class HomeController extends Controller
             return redirect()->route('home_user');
         } else {
             return redirect()->back()->with('error', 'Email hoặc mật khẩu không đúng');
-            // return redirect()->back()->with('error', 'Email hoặc Password sai');
         }
     }
 
@@ -183,21 +183,30 @@ class HomeController extends Controller
         ]);
         return redirect()->route('viewLoginUser');
     }
+    // yêu thích
+    public function favorite()
+    {
+        $categories = Categories::orderBy('name', 'asc')->get();
+        $hotNew = News::where('hot', 1)->limit(4)->get();
+        $fac = favorite::where('user_id', Auth()->user()->id)->paginate(20);
 
-    // danh sách đơn hàng
-    public function listOrder()
-    {
-        $orders = Orders::currentUserOrders()->paginate(10);
-        $hotNew = News::where('hot', 1)->limit(4)->get();
-        $categories = Categories::orderBy('name', 'asc')->get();
-        return view('frontend.page.listOrder', compact('orders','categories','hotNew'));
+        return view('frontend.page.wishlist', compact('categories', 'hotNew', 'fac'));
     }
-    public function orderDetail($id)
+    public function addfavorite(Request $request)
     {
-        $hotNew = News::where('hot', 1)->limit(4)->get();
-        $categories = Categories::orderBy('name', 'asc')->get();
-        $orders = Orders::find($id);
-        $orderDetails = Oder_details::where('orders_id', $id)->paginate(10);
-        return view('frontend.page.orderDetail', compact('orders', 'orderDetails','hotNew','categories'));
+        // dd($request->id);
+        $product = products::where('id', $request->id)->first();
+        dd($product);
+        $already_favorite = favorite::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
+        // return $already_favorite;
+        if ($already_favorite) {
+            return back()->with('error', 'Sản phẩm đã tồn tại trong danh sách yêu thích.');
+        } else {
+            $favorite = new favorite;
+            $favorite->user_id = auth()->user()->id;
+            $favorite->product_id = $product->id;
+            $favorite->save();
+        }
+        return redirect()->route('favorite')->with('success', 'Thêm thành công.');
     }
 }
