@@ -26,4 +26,10 @@ class favorite extends Model
     {
         return $this->belongsTo(User::class);
     }
+    // Trong model FavoriteProduct
+
+    public function removeAllFavorites()
+    {
+        $this->where('user_id', auth()->id())->delete();
+    }
 }

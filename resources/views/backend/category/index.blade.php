@@ -15,7 +15,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List Category</h1>
+                        <table style="width: 350%;">
+                            <td>
+                                <h1 class="m-0">Danh Sách Danh Mục</h1>
+                            </td>
+                            <td>
+                                <form action="" method="GET" style="margin-top: 20px; ">
+                                    <input style="width:450px;  height:30px" type="text" name="keyword"
+                                        placeholder="Nhập tên danh mục">
+                                    <button type="submit">Tìm</button>
+                                </form>
+                            </td>
+                        </table>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -25,8 +36,18 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <a href="{{ route('createCategory') }}" class="btn btn-success float-left m-2" style="background-color: #337ab7">Add Category</a>
+                        <a href="{{ route('createCategory') }}" class="btn btn-success float-left m-2"
+                            style="background-color: #337ab7">Thêm danh mục</a>
                     </div>
+                    
+                    @if ($categories->isEmpty())
+                    <div class="col-md-12">
+                        <br>
+                        <ul>
+                            <h5>Không tìm thấy danh mục vừa nhập. Vui lòng nhập lại!</h5>
+                        </ul>
+                    </div>
+                    @else
                     <div class="col-md-12">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show">
@@ -43,8 +64,8 @@
                         <table class="table table-bordered table-hover">
                             <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Tên danh mục</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody style="background-color: #fff">
@@ -52,8 +73,14 @@
                                     <tr>
                                         <td>{{ $category->name }}</td>
                                         <td>
-                                            <a href="{{ route('editCategory', [$category->id]) }}" class="btn d-inline btn-info">Edit</a>
-                                            <form class=" d-inline" action="{{ route('destroyCategory', $category->id) }}" method="post">
+                                            {{-- <a href="{{ route('editCategory', [$category->id]) }}" class="btn d-inline btn-info">Edit</a> --}}
+                                            <form class=" d-inline" action="{{ route('editCategory', $category->id) }}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-info"
+                                                    style="margin-right:10px ">Edit</a>
+                                            </form>
+                                            <form class=" d-inline" action="{{ route('destroyCategory', $category->id) }}"
+                                                method="post">
                                                 @csrf
                                                 <button type="submit" class="btn btn-danger"
                                                     onclick="return confirm('Bạn có chắc chắn xóa không?')">Delete</a>
@@ -64,6 +91,8 @@
                             </tbody>
                         </table>
                     </div>
+                    @endif
+
                     <div class="col-md-12">
                         {{ $categories->links('pagination::bootstrap-4') }}
                     </div>

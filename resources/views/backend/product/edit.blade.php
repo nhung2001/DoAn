@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit Product</h1>
+                        <h1 class="m-0">Sửa Sản Phẩm</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,12 +29,12 @@
                             enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Name: </label>
+                                <label for="name">Tên sản phẩm: </label>
                                 <input disabled type="text" name="name" value="{{ $product->name }}"
                                     class="form-control" id="name">
                             </div>
                             <div class="form-group">
-                                <label for="price">Price: </label>
+                                <label for="price">Giá sản phẩm: </label>
                                 <input type="float" name="price" value="{{ $product->price }}"
                                     class="form-control @error('price') is-invalid @enderror" id="price">
                                 @error('price')
@@ -44,7 +44,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="discount">Discount: </label>
+                                <label for="discount">Giảm giá: </label>
                                 <input type="float" name="discount" value="{{ $product->discount }}"
                                     class="form-control @error('discount') is-invalid @enderror" id="discount">
                                 @error('discount')
@@ -54,7 +54,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="quantity">Quantity: </label>
+                                <label for="quantity">Số lượng: </label>
                                 <input type="interger" name="quantity" value="{{ $product->quantity }}"
                                     class="form-control @error('quantity') is-invalid @enderror" id="quantity">
                                 @error('quantity')
@@ -64,7 +64,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="author">Author: </label>
+                                <label for="author">Tác giả: </label>
                                 <input type="text" name="author" value="{{ $product->author }}"
                                     class="form-control @error('author') is-invalid @enderror" id="author">
                                 @error('author')
@@ -74,7 +74,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="description">Description: </label>
+                                <label for="description">Mô tả: </label>
                                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
                                     id="description">{{ $product->description }}</textarea>
                                 @error('description')
@@ -84,7 +84,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="category">Category: </label>
+                                <label for="category">Danh mục: </label>
                                 <select name="sub_categories_id" id="sub_categories_id" class="form-select form-control">
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}"
@@ -101,7 +101,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image: </label>
+                                <label for="image">Ảnh sản phẩm: </label>
                                 <input type="file" name="image" value="{{ $product->image }}" class="form-control @error('image') is-invalid @enderror"
                                     id="image">
                                 @error('image')

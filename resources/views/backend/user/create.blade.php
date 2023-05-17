@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add User</h1>
+                        <h1 class="m-0">Thêm User</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
                         <form action="{{ route('store') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Name: </label>
+                                <label for="email">Tên user: </label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Enter name">
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên người dùng">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -40,7 +40,7 @@
                             <div class="form-group">
                                 <label for="email">Email: </label>
                                 <input type="email" name="email"
-                                    class="form-control @error('email') is-invalid @enderror" placeholder="Enter email">
+                                    class="form-control @error('email') is-invalid @enderror" placeholder="Nhập email người dùng">
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -48,10 +48,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Password: </label>
-                                <input type="password" name="password"
+                                <label for="email">Mật khẩu: </label>
+                                <input type="text" name="password"
                                     class="form-control @error('password') is-invalid @enderror"
-                                    placeholder="Enter password">
+                                    placeholder="Nhập mật khẩu">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -59,9 +59,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Phone: </label>
+                                <label for="email">Số điện thoại: </label>
                                 <input type="text" name="phone"
-                                    class="form-control @error('phone') is-invalid @enderror" placeholder="Enter phone">
+                                    class="form-control @error('phone') is-invalid @enderror" placeholder="Nhập số điện thoại">
                                 @error('phone')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -69,9 +69,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Address: </label>
+                                <label for="email">Địa chỉ: </label>
                                 <input type="text" name="address"
-                                    class="form-control @error('address') is-invalid @enderror" placeholder="Enter address">
+                                    class="form-control @error('address') is-invalid @enderror" placeholder="Nhập địa chỉ">
                                 @error('address')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -79,10 +79,10 @@
                                 @enderror
                             </div>
                             <div class="form-group" >
-                                <label for="email">Role: </label>
+                                <label for="email">Vai trò: </label>
                                 <select name="role" class="form-select form-control">
-                                    <option>Admin</option>
-                                    <option>User</option>
+                                    <option>Employee</option>
+                                    <option>Customer</option>
                                 </select>
                             </div>
                             <div class="form-group">

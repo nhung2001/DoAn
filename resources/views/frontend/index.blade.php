@@ -109,7 +109,6 @@
                                                     <input name="productid_hidden" type="hidden"
                                                         value="{{ $item->id }}" />
                                                     <div class="action-btn" >
-                                                        {{-- <button class="button" type="submit">Yêu thích</button> --}}
                                                         <a class="d-block" href="{{ route('addfavorite', $item->id) }}" data-id="2479395">
                                                             <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
                                                         </a>
@@ -141,6 +140,8 @@
                             <div id="content-taba4" class="content-tab content-tab-proindex">
                                 <!-- box product -->
                                 @foreach ($discounts as $item)
+                                <form action="{{ route('addCart') }}" method="post">
+                                    @csrf
                                     <div class="col-xs-6 col-md-2 col-sm-6 ">
                                         <div class="product-grid" id="product-1168979"
                                             style="height: 420px; overflow: hidden;">
@@ -176,17 +177,21 @@
                                                     <a href="#"><img
                                                             src="{{ asset('frontend/image/star.jpg') }}"></a>
                                                 </p>
+                                                <input name="qty" type="hidden" min="1" value="1" />
+                                                    <input name="productid_hidden" type="hidden"
+                                                        value="{{ $item->id }}" />
                                                 <div class="action-btn">
                                                     <form>
-                                                        <a class="d-block" data-id="2479395">
+                                                        <a class="d-block" href="{{ route('addfavorite', $item->id) }}" data-id="2479395">
                                                             <i class=" fa fa-heart-o fa-lg" style="margin-right: 8px; "></i>
                                                         </a>
-                                                        <a href="#" class="button">Add to Cart</a>
+                                                        <button class="button" type="submit">Add to cart</button>
                                                     </form>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+                                </form>
                                 @endforeach
 
                                 <!-- end box product -->

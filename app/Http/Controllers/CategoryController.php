@@ -8,9 +8,20 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $categories = Categories::orderby('id', 'ASC')->paginate(5);
+    //     return view('backend.category.index', compact('categories'));
+    // }
+    public function index(Request $request)
     {
-        $categories = Categories::orderby('id', 'ASC')->paginate(5);
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $categories = Categories::where('name', 'like', '%' . $keyword . '%')->paginate(5);
+        } else {
+            //$categories = Categories::all();
+            $categories = Categories::orderby('id', 'ASC')->paginate(5);
+        }
         return view('backend.category.index', compact('categories'));
     }
 

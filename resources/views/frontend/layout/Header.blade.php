@@ -46,7 +46,6 @@
                     </div>
                 </form>
 
-
                 <!--giỏ hàng, yêu thích-->
                 <div class="col-xs-12 col-sm-12 col-md-3 mini-cart">
 
@@ -58,10 +57,10 @@
                                     class="fa fa-caret-down"></i></a>
                     </div>
 
-                    <div class="wrapper-mini-cart"  style="margin-right: 12px"><a href="cart"> <span class="icon"><i
+                    <div class="wrapper-mini-cart"  style="margin-right: 12px"><a href="favorite"> <span class="icon"><i
                                     class="fa fa-heart"></i></span>
-                            <a href="cart"> <span class="mini-cart-count">
-                                </span> sản phẩm <i class="fa fa-caret-down"></i></a>
+                            <a href="favorite"> <span class="mini-cart-count">
+                                </span>sản phẩm <i class="fa fa-caret-down"></i></a>
                     </div>
                 </div>
 

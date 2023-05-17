@@ -40,11 +40,12 @@ class HomeController extends Controller
         $New = News::all();
         return view('frontend.page.new', compact('New', 'hotNew', 'categories'));
     }
-    public function newDetail($id)
+    public function newDetail(Request $request, $id)
     {
         $hotNew = News::where('hot', 1)->limit(4)->get();
         $categories = Categories::orderBy('name', 'asc')->get();
         $new_Detail = News::find($id);
+        $new_Detail->content = htmlspecialchars_decode($new_Detail->content);
         return view('frontend.page.newDetail', compact('hotNew', 'new_Detail', 'categories'));
     }
 
@@ -54,7 +55,8 @@ class HomeController extends Controller
         $hotNew = News::where('hot', 1)->limit(4)->get();
         $categories = Categories::orderBy('name', 'asc')->get();
 
-        $search_Name = Products::where('name', 'like', '%' . $request->keyword . '%')->get();
+        $search_Name = Products::where('name', 'like', '%' . $request->keyword . '%')
+            ->orWhere('author', 'like', '%' . $request->keyword . '%')->paginate(10);
         return view('frontend.page.searchName', compact('hotNew', 'search_Name', 'categories'));
     }
 
@@ -66,7 +68,7 @@ class HomeController extends Controller
         $min_price = $request->min_price;
         $max_price = $request->max_price;
         $search_Price = Products::whereBetween('price', [$min_price, $max_price])->paginate(2);
-        return view('frontend.page.searchPrice', compact('hotNew', 'search_Price', 'categories'));
+        return view('frontend.page.searchPrice', compact('hotNew', 'search_Price', 'categories','min_price','max_price'));
     }
 
     //product detail
@@ -116,13 +118,15 @@ class HomeController extends Controller
     {
         $request->validate(
             [
-                'email' => 'required|email',
+                'email' => ['required', 'email', 'regex:/^[A-Za-z0-9\.\-_]+@gmail\.com$/i'],
                 'password' => 'required|min:8|max:10|string',
             ],
             [
                 'email.required' => 'Vui lòng nhập Email',
                 'email' => 'Vui nhập đúng định dạng Email',
                 'password.required' => 'Vui lòng nhập Password',
+                'password.min' => 'Password tối thiểu 8 ký tự',
+                'password.max' => 'Password tối đa 10 ký tự',
                 'min' => 'Password tối thiểu 8 ký tự',
                 'password.max' => 'Password tối đa 10 ký tự',
             ]
@@ -133,7 +137,7 @@ class HomeController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect()->route('home_user');
         } else {
-            return redirect()->back()->with('error', 'Email hoặc mật khẩu không đúng');
+            return redirect()->route('viewLoginUser')->with('error', 'Email hoặc mật khẩu không đúng');
         }
     }
 
@@ -155,22 +159,24 @@ class HomeController extends Controller
     {
         $request->validate(
             [
-                'email' => 'required|email|unique:Users,email',
+                'email' => ['required', 'email', 'regex:/^[A-Za-z0-9\.\-_]+@gmail\.com$/i', 'unique:Users,email'],
                 'password' => 'required|min:8|max:10|string',
                 'address' => 'required',
                 'phone' => 'required|size:10|regex:/^[0-9]{10}$/',
-                'name' => 'required|',
+                'name' => 'required',
             ],
             [
                 'email.required' => 'Vui lòng nhập Email',
+                'email.email' => 'Vui lòng nhập đúng định dạng Email',
+                'email.regex' => 'Email không hợp lệ',
                 'email.unique' => 'Email đã tồn tại',
-                'email' => 'Vui nhập đúng định dạng Email',
                 'password.required' => 'Vui lòng nhập Password',
-                'min' => 'Password tối thiểu 8 ký tự',
+                'password.min' => 'Password tối thiểu 8 ký tự',
                 'password.max' => 'Password tối đa 10 ký tự',
                 'address' => 'Vui lòng nhập Địa chỉ',
-                'phone' => 'Số điện thoại là 10 chữ số',
-                'phone.max' => 'Số điện thoại là 10 chữ số',
+                'phone.required' => 'Vui lòng nhập số điện thoại',
+                'phone.size' => 'Số điện thoại là 10 chữ số',
+                'phone.regex' => 'Số điện thoại là 10 chữ số',
                 'name' => 'Vui lòng nhập họ tên',
             ]
         );
@@ -194,13 +200,12 @@ class HomeController extends Controller
     }
     public function addfavorite(Request $request)
     {
-        // dd($request->id);
         $product = products::where('id', $request->id)->first();
-        dd($product);
-        $already_favorite = favorite::where('user_id', auth()->user()->id)->where('product_id', $product->id)->first();
-        // return $already_favorite;
+        $already_favorite = favorite::where('user_id', auth()
+            ->user()->id)
+            ->where('product_id', $product->id)->first();
         if ($already_favorite) {
-            return back()->with('error', 'Sản phẩm đã tồn tại trong danh sách yêu thích.');
+            return redirect()->route('favorite')->with('error', 'Sản phẩm đã tồn tại trong danh sách yêu thích.');
         } else {
             $favorite = new favorite;
             $favorite->user_id = auth()->user()->id;
@@ -209,4 +214,25 @@ class HomeController extends Controller
         }
         return redirect()->route('favorite')->with('success', 'Thêm thành công.');
     }
+
+    public function delete(Request $request)
+    {
+        $w = favorite::find($request->id)->delete();
+        return back();
+    }
+
+    public function clear()
+    {
+        $favoriteProduct = new favorite();
+        $favoriteProduct->removeAllFavorites();
+        return redirect()->back()->with('success', 'Đã xóa tất cả sản phẩm yêu thích.');
+    }
+
+    // public function countFac($id)
+    // {
+    //     $productCount = 0; 
+    //     $user = User::find($id);
+    //     $productCount = $user->favorite()->count();
+    //     return view('frontend.layout.Header', ['productCount' => $productCount])->render();
+    // }
 }

@@ -17,4 +17,5 @@ yarn-error.log
 /public/frontend
 /public/image
 /public/assets
+/public/ckeditor
 # /resources/views/frontend/page/cart.blade.php

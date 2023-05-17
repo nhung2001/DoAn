@@ -8,6 +8,20 @@
         ?>
 
         <div class="table-responsive">
+
+            @if (session('error'))
+                <div class="alert alert-success">
+                    <h5> <b><button class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -2.5px">×</button>
+                            {{ session('error') }} </h5></b>
+                </div>
+            @endif
+            @if (session('success'))
+                <div class="alert alert-success">
+                    <h5> <b><button class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -2.5px">×</button>
+                        {{ session('success') }} </h5></b>
+                </div>
+            @endif
+
             <table class="table table-cart">
                 <thead>
                     <tr>
@@ -27,12 +41,14 @@
                                 <td><img src="{{ asset('image/product/' . $item->options->image) }}" class="img-responsive"
                                         style="height: 109px; width: 85px; margin-left: 10px;" />
                                 </td>
-                                <td><a href="">{{ $item->name }}</a></td>
+                                <td><a href="{{ route('productDetail', ['id' => $item->id]) }}">{{ $item->name }}</a></td>
                                 <td>
-                                    {{number_format($item->price)}}
+                                    {{ number_format($item->price) }}
                                 <td>
                                     <input type="number" id="quantity_{{ $item->rowId }}"
-                                        name="quantities[{{ $item->rowId }}]" value="{{ $item->qty }}" min="1">
+                                        name="quantities[{{ $item->rowId }}]" value="{{ $item->qty }}" min="1"
+                                        max="{{ $item->sl }}">
+                                    <input type="hidden" name="id" value="{{ $item->id }}" />
                                 </td>
                                 <td>
                                     <p><b>{{ number_format($item->price * $item->qty) }}₫</b>

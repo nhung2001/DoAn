@@ -9,9 +9,21 @@ use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $products = Products::orderby('id', 'ASC')->paginate(15);
+    //     return view('backend.product.index', compact('products'));
+    // }
+    public function index(Request $request)
     {
-        $products = Products::orderby('id', 'ASC')->paginate(15);
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $products = Products::where('name', 'like', '%' . $keyword . '%')->paginate(3);
+        } else {
+            //$products = Products::all();
+            $products = Products::orderby('id', 'ASC')->paginate(3);
+        }
+
         return view('backend.product.index', compact('products'));
     }
 
@@ -68,8 +80,8 @@ class ProductController extends Controller
                     $image = Str::random(5) . "_" . $filename;
                 }
                 $file->move(public_path('image/product'), $image);
+            }
         }
-    }
         $products = Products::create([
             'name' => $request->name,
             'image' => $image,
@@ -92,9 +104,9 @@ class ProductController extends Controller
     }
     public function update(Request $request, $id)
     {
-        if($request->hot == 'Có'){
+        if ($request->hot == 'Có') {
             $hot = 1;
-        }else{
+        } else {
             $hot = 0;
         }
         $request->validate(
@@ -133,7 +145,7 @@ class ProductController extends Controller
                 }
                 $file->move(public_path('image/product'), $image);
             }
-        }else{
+        } else {
             $product = Products::find($id);
             $image = $product->image;
         }
@@ -154,4 +166,24 @@ class ProductController extends Controller
         $product = Products::find($id)->delete();
         return redirect()->route('product')->with('success', 'Đã xóa sản phẩm');
     }
+
+    public function searchProduct(Request $request)
+    {
+        // $keyword = $request->input('keyword');
+        $searchProduct = Products::where('name', 'like', '%' . $request->keyword . '%')
+            ->get();
+        return view('backend.product.index', [
+            'searched' => true,
+            'products' => $searchProduct
+        ]);
+    }
+    // public function searchName(Request $request)
+    // {
+    //     $hotNew = News::where('hot', 1)->limit(4)->get();
+    //     $categories = Categories::orderBy('name', 'asc')->get();
+
+    //     $search_Name = Products::where('name', 'like', '%' . $request->keyword . '%')
+    //         ->orWhere('author', 'like', '%' . $request->keyword . '%')->paginate(10);
+    //     return view('frontend.page.searchName', compact('hotNew', 'search_Name', 'categories'));
+    // }
 }

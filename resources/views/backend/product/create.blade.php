@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add User</h1>
+                        <h1 class="m-0">Thêm Sản Phẩm</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
                         <form action="{{ route('storeProduct') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Name: </label>
+                                <label for="name">Tên sản phẩm: </label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Enter name"
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên sản phẩm"
                                     id="name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -39,9 +39,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="price">Price: </label>
+                                <label for="price">Giá bán: </label>
                                 <input type="float" name="price"
-                                    class="form-control @error('price') is-invalid @enderror" placeholder="Enter price"
+                                    class="form-control @error('price') is-invalid @enderror" placeholder="Nhập giá bán"
                                     id="price">
                                 @error('price')
                                     <span class="invalid-feedback" role="alert">
@@ -50,10 +50,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="discount">Discount: </label>
+                                <label for="discount">Giảm giá: </label>
                                 <input type="float" name="discount"
                                     class="form-control @error('discount') is-invalid @enderror"
-                                    placeholder="Enter discount" id="discount">
+                                    placeholder="Nhập giảm giá" id="discount">
                                 @error('discount')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -61,10 +61,10 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="quantity">Quantity: </label>
+                                <label for="quantity">Số lượng: </label>
                                 <input type="interger" name="quantity"
                                     class="form-control @error('quantity') is-invalid @enderror"
-                                    placeholder="Enter quantity" id="quantity">
+                                    placeholder="Nhập số lượng" id="quantity">
                                 @error('quantity')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -72,9 +72,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="author">Author: </label>
+                                <label for="author">Tác giả: </label>
                                 <input type="text" name="author"
-                                    class="form-control @error('author') is-invalid @enderror" placeholder="Enter author"
+                                    class="form-control @error('author') is-invalid @enderror" placeholder="Nhập tác giả"
                                     id="author">
                                 @error('author')
                                     <span class="invalid-feedback" role="alert">
@@ -83,9 +83,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="description">Description: </label>
+                                <label for="description">Mô tả: </label>
                                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Enter description" id="description"></textarea>
+                                    placeholder="Nhập mô tả sản phẩm" id="description"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -93,7 +93,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="category">Category: </label>
+                                <label for="category">Danh mục: </label>
                                 <select name="sub_categories_id" id="sub_categories_id" class="form-select form-control">
                                     @foreach ($subcategories as $subcategory)
                                         <option value="{{ $subcategory->id }}">{{ $subcategory->name }}</option>
@@ -108,7 +108,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image: </label>
+                                <label for="image">Ảnh sản phẩm: </label>
                                 <input type="file" name="image"
                                     class="form-control @error('image') is-invalid @enderror" id="image">
                                 @error('image')

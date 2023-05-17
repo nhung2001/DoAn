@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Category</h1>
+                        <h1 class="m-0">Thêm Danh Mục</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
                         <form action="{{ route('storeCategory') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Name: </label>
+                                <label for="email">Tên danh mục: </label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Enter name"
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên danh mục"
                                     id="email">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">

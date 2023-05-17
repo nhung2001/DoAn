@@ -9,9 +9,21 @@ use App\Models\Mails;
 
 class MailController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $mails = Mails::orderby('id', 'ASC')->paginate(5);
+    //     return view('backend.mail.index', compact('mails'));
+    // }
+    public function index(Request $request)
     {
-        $mails = Mails::orderby('id', 'ASC')->paginate(5);
+        $createdDate = $request->input('created_date');
+
+        if ($createdDate) {
+            $mails = Mails::whereDate('created_at', $createdDate)->paginate(5);
+        } else {
+            //$mails = Mails::all();
+            $mails = Mails::orderby('id', 'ASC')->paginate(5);
+        }
         return view('backend.mail.index', compact('mails'));
     }
     
@@ -41,6 +53,7 @@ class MailController extends Controller
     public function showMail($id)
     {
         $mail = Mails::find($id);
+        $mail->content = htmlspecialchars_decode($mail->content);
         return view('backend.mail.show', compact('mail'));
     }
 

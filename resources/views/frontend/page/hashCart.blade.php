@@ -11,10 +11,9 @@
                         <h2>Đặt hàng thành công.</h2>
                         <h3>Cảm ơn bạn đã đặt hàng trên website của chúng tôi! Nhân viên giao hàng sẽ liên hệ với bạn sớm
                             nhất có
-                            thể.</h3>
+                            thể.</h3><br>
                         <h4>Danh sách sản phẩm đã đặt</h4>
                     </div>
-
                 </div>
             </div>
         </div>

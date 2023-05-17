@@ -24,6 +24,7 @@ class cartController extends Controller
         $quantity = $request->qty;
         $products_info = Products::where('id', $productID)->first();
         $data['id'] = $products_info->id;
+        $data['sl'] = $products_info->quantity;
         $data['qty'] = $quantity;
         $data['name'] = $products_info->name;
         $data['price'] = $products_info->price;
@@ -41,11 +42,21 @@ class cartController extends Controller
     // Lấy thông tin về số lượng sản phẩm từ form post
     public function update(Request $request)
     {
-        $quantities = $request->input('quantities');
         foreach ($request->input('quantities') as $rowId => $quantity) {
+            $cartItem = Cart::get($rowId);
+            $product = Products::findOrFail($cartItem->id);
+            if($quantity > $product->quantity && $product->quantity > 0){
+                return redirect()->route('cart')->with('error', 'Sản phẩm "' . $product->name . '"  
+                vượt quá số lượng hàng trong kho. Vui lòng chọn lại!! Bạn có thể chọn tối đa "' 
+                . $product->quantity . '" sản phẩm  ' );
+            }
+            elseif( $quantity > $product->quantity && $product->quantity === 0){
+                return redirect()->route('cart')->with('error', 'Sản phẩm "' . $product->name . '"  
+                đã hết hàng. Vui lòng xóa ra khỏi giỏ hàng và chọn lại!! ' );
+            }
             Cart::update($rowId, $quantity);
         }
-        return redirect()->route('cart');
+        return redirect()->route('cart')->with('success', 'Đã cập nhật giỏ hàng!!' );
     }
     public function delete($rowId)
     {

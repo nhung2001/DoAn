@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit Oders</h1>
+                        <h1 class="m-0">Cập Nhật Đơn Hàng</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -29,12 +29,12 @@
                             @csrf
                             
                             <div class="form-group">
-                                <label for="hot">Status: </label>
+                                <label for="hot">Tình trạng: </label>
                                 <select name="status" class="form-select form-control">
                                     <option value="Đang xử lý"{{ $status->status == '0' ? 'selected' : '' }}>Đang xử lý</option>
                                     <option value="Đang giao hàng"{{ $status->status == '1' ? 'selected' : '' }}>Đang giao hàng</option>
-                                    <option value="Đã giao hàng"{{ $status->status == '2' ? 'selected' : '' }}>Đã giao hàng</option>
-                                    {{-- <option value="Đã hủy"{{ $status->status == '3' ? 'selected' : '' }}>Đã hủy</option> --}}
+                                    <option value="Giao hàng thành công"{{ $status->status == '2' ? 'selected' : '' }}>Giao hàng thành công</option>
+                                    <option value="Đã hủy"{{ $status->status == '3' ? 'selected' : '' }}>Đã hủy</option> 
                                 </select>
                             </div>
                             <div class="form-group">

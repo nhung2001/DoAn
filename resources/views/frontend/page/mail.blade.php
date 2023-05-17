@@ -20,7 +20,8 @@
         <thead>
             <tr>
                 <th>Sản phẩm</th>
-                <th>Giá</th>
+                <th>Giá bán</th>
+                <th>Giảm giá</th>
                 <th>Số lượng</th>
                 <th>Thành tiền</th>
             </tr>
@@ -29,16 +30,16 @@
             @foreach ($orderDetails as $item)
                 <tr>
                     <td>{{ $item->products->name }}</td>
-                    <td>{{ $item->products->price }}</td>
+                    <td>{{number_format( $item->products->price) }}</td>
+                    <td>{{ $item->products->discount}}</td>
                     <td>{{ $item->quantity }}</td>
-                    <td>{{ $item->quantity * $item->price }}</td>
+                    <td>{{number_format( $item->quantity * $item->price) }}</td>
                 </tr>
             @endforeach
         </tbody>
         <tfoot>
             <tr>
-                <td colspan="3">Tổng tiền</td>
-                <td>{{ $order->total }}</td>
+                <th colspan="5">Tổng tiền: {{ $order->total }}</th>
             </tr>
         </tfoot>
     </table>

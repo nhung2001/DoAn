@@ -17,7 +17,7 @@
                         <table style="width: 200%;">
                             <tr>
                                 <td>
-                                    <h1 class="m-0">Order_Details</h1></td>
+                                    <h1 class="m-0">Chi tiết đơn hàng</h1></td>
                                 <td><h5 class="card-header"><a href="{{ route('orderPdf', $orders->id) }}"
                                     class=" btn btn-sm btn-primary shadow-sm float-right"><i
                                         class="fas fa-download fa-sm text-white-50"></i>
@@ -82,7 +82,7 @@
                                         <td><img width="100px" height="100px"
                                                 src="{{ asset('image/product/' . $item->products->image) }}"></td>
                                         <td>{{ $item->products->name }}</td>
-                                        <td>{{ number_format($item->price) }}</td>
+                                        <td>{{ number_format($item->products->price) }}</td>
                                         <td>{{ $item->quantity }}</td>
                                         <td>{{ $item->products->discount }}%</td>
                                         <td>{{ number_format(($item->price - ($item->price * $item->discount) / 100) * $item->quantity) }}

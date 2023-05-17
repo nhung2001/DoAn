@@ -8,11 +8,23 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $users = User::orderby('id', 'ASC')->paginate(10);
+    //     return view('backend.user.index', compact('users'));
+    // }
+    public function index(Request $request)
     {
-        $users = User::orderby('id', 'ASC')->paginate(10);
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $users = User::where('email', 'like', '%' . $keyword . '%')->paginate(10);
+        } else {
+            //$User = User::all();
+            $users = User::whereIn('role', [0, 1])->paginate(10);
+        }
         return view('backend.user.index', compact('users'));
     }
+
     public function create()
     {
         return view('backend.user.create');
@@ -21,24 +33,28 @@ class UserController extends Controller
     {
         $request->validate(
             [
-                'name' => 'required|max:255',
-                'email' => 'required|email|unique:users|max:255',
-                'password' => 'required|min:8',
-                'phone' => 'required|size:10|regex:/^[0-9]{10}$/',
+                'email' => ['required', 'email', 'regex:/^[A-Za-z0-9\.\-_]+@gmail\.com$/i', 'unique:Users,email'],
+                'password' => 'required|min:8|max:10|string',
                 'address' => 'required',
+                'phone' => 'required|size:10|regex:/^[0-9]{10}$/',
+                'name' => 'required',
             ],
             [
-                'name.required' => 'Vui lòng nhập tên',
-                'password.required' => 'Vui lòng nhập mật khẩu',
-                'phone' => 'Vui lòng nhập số điện thoại là 10 chữ số',
-                'size' => 'Phone là 10 chữ số',
-                'min' => 'Password tối thiểu 8 ký tự',
-                'email' => 'Vui lòng nhập email',
+                'email.required' => 'Vui lòng nhập Email',
+                'email.email' => 'Vui lòng nhập đúng định dạng Email',
+                'email.regex' => 'Email không hợp lệ',
                 'email.unique' => 'Email đã tồn tại',
-                'address' => 'Vui lòng nhập địa chỉ',
+                'password.required' => 'Vui lòng nhập Password',
+                'password.min' => 'Password tối thiểu 8 ký tự',
+                'password.max' => 'Password tối đa 10 ký tự',
+                'address' => 'Vui lòng nhập Địa chỉ',
+                'phone.required' => 'Vui lòng nhập số điện thoại',
+                'phone.size' => 'Số điện thoại là 10 chữ số',
+                'phone.regex' => 'Số điện thoại là 10 chữ số',
+                'name' => 'Vui lòng nhập họ tên',
             ]
         );
-        if ($request->role == 'Admin') {
+        if ($request->role == 'Employee') {
             $role = 1;
         } else {
             $role = 0;
@@ -69,13 +85,15 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|size:10|regex:/^[0-9]{10}$/',
             'address' => 'required',
         ],
         [
             'name.required' => 'Vui lòng nhập tên',
             'phone.required' => 'Vui lòng nhập số điện thoại',
-            'address.required' => 'Vui lòng nhập địac chỉ',
+            'phone.size' => 'Số điện thoại là 10 chữ số',
+            'phone.regex' => 'Số điện thoại là 10 chữ số',
+            'address.required' => 'Vui lòng nhập địa chỉ',
         ]
     );
         $user = User::find($id);

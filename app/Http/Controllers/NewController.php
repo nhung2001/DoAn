@@ -9,9 +9,21 @@ use App\Models\Products;
 
 class NewController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $news = News::orderby('id', 'ASC')->paginate(5);
+    //     return view('backend.new.index', compact('news'));
+    // }
+    
+    public function index(Request $request)
     {
-        $news = News::orderby('id', 'ASC')->paginate(5);
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $news = News::where('name', 'like', '%' . $keyword . '%')->paginate(3);
+        } else {
+            //$news = News::all();
+            $news = News::orderby('id', 'ASC')->paginate(5);
+        }
         return view('backend.new.index', compact('news'));
     }
 
@@ -70,7 +82,7 @@ class NewController extends Controller
 
     public function edit($id)
     {
-        $new = Products::find($id);
+        $new = News::find($id);
         return view('backend.new.edit', compact('new'));
     }
     public function update(Request $request, $id)

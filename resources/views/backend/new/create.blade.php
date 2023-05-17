@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add News</h1>
+                        <h1 class="m-0">Thêm Tin Tức</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
                         <form action="{{ route('storeNew') }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Name: </label>
+                                <label for="name">Tên tin tức: </label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Enter name"
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên tin tức"
                                     id="name">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -38,10 +38,10 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="form-group">
-                                <label for="description">Description: </label>
+                            <div class="form-group " >
+                                <label for="description">Mô tả: </label>
                                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
-                                    placeholder="Enter description" id="description"></textarea>
+                                    placeholder="Nhập mô tả tin tức" id="description"></textarea>
                                 @error('description')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,9 +49,9 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="content">Content: </label>
+                                <label for="content">Nội dung: </label>
                                 <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror"
-                                    placeholder="Enter content" id="content"></textarea>
+                                    placeholder="Nhập nội dung tin tức" id="content"></textarea>
                                 @error('content')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -66,7 +66,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image: </label>
+                                <label for="image">Ảnh: </label>
                                 <input type="file" name="image"
                                     class="form-control @error('image') is-invalid @enderror" id="image">
                                 @error('image')

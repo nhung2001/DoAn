@@ -17,14 +17,16 @@ class LoginController extends Controller
     {
         $request->validate(
             [
-                'email' => 'required|email',
-                'password' => 'required|min:8|string'
+                'email' => ['required', 'email', 'regex:/^[A-Za-z0-9\.\-_]+@gmail\.com$/i'],
+                'password' => 'required|min:8|max:10|string',
             ],
             [
                 'email.required' => 'Vui lòng nhập Email',
+                'email.email' => 'Vui lòng nhập đúng định dạng Email',
+                'email.regex' => 'Email không hợp lệ',
                 'password.required' => 'Vui lòng nhập Password',
-                'min' => 'Password tối thiểu 8 ký tự',
-                'email' => 'Vui nhập đúng định dạng Email'
+                'password.min' => 'Password tối thiểu 8 ký tự',
+                'password.max' => 'Password tối đa 10 ký tự',
             ]
         );
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

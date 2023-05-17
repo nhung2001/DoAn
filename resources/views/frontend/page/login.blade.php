@@ -4,6 +4,12 @@
     <div class="template-customer container">
         <h1>Đăng nhập tài khoản</h1>
         <p>Nếu bạn có tài khoản xin vui lòng đăng nhập</p>
+        @if (session('error'))
+            <div class="alert alert-success" style="width:48%">
+                 <b><button class="close" data-dismiss="alert" aria-label="Close" style="margin-top: -2.5px">×</button>
+                        {{ session('error') }} </b>
+            </div>
+        @endif
         <div class="row" style="margin-top:50px;">
             <div class="col-md-6">
                 <div class="wrapper-form">
@@ -14,7 +20,8 @@
                         <p class="title"><span>Đăng nhập tài khoản</span></p>
                         <div class="form-group ">
                             <label>Email:<b id="req">*</b></label>
-                            <input type="email" class="input-control @error('email') is-invalid @enderror" name="email">
+                            <input type="email" name="email" class="input-control @error('email') is-invalid @enderror"
+                                placeholder="Enter email">
                             @error('email')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>

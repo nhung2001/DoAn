@@ -15,7 +15,17 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List Mail</h1>
+                        <table style="width: 320%;">
+                            <td>
+                                <h1 class="m-0">Danh Sách Mail </h1>
+                            </td>
+                            <td>
+                                <form action="" method="GET" style="margin-top: 20px; ">
+                                    <input type="date" name="created_date" placeholder="Created Date">
+                                    <button type="submit">Tìm</button>
+                                </form>
+                            </td>
+                        </table>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -26,8 +36,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a href="{{ route('mailForm') }}" class="btn btn-success float-left m-2"
-                            style="background-color: #337ab7">Add Mail</a>
+                            style="background-color: #337ab7">Thêm Mail</a>
                     </div>
+
+                    @if ($mails->isEmpty())
+                    <div class="col-md-12">
+                        <br>
+                        <ul>
+                            <h5>Không tìm thấy email theo ngày vừa nhập. Vui lòng nhập lại!</h5>
+                        </ul>
+                    </div>
+                    @else
+
                     <div class="col-md-12">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show">
@@ -38,10 +58,10 @@
                         <table class="table table-bordered table-hover">
                             <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Title</th>
-                                    <th scope="col">Date</th>
-                                    <th scope="col">Action</th>
+                                    <th scope="col">STT</th>
+                                    <th scope="col">Tiêu đề email</th>
+                                    <th scope="col">Ngày gửi</th>
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody style="background-color: #fff">
@@ -59,9 +79,12 @@
                             </tbody>
                         </table>
                     </div>
+
                     <div class="col-md-12">
                         {{ $mails->links('pagination::bootstrap-4') }}
                     </div>
+                    @endif
+
                 </div>
                 <!-- /.row -->
             </div><!-- /.container-fluid -->

@@ -33,26 +33,26 @@
                     <p>
                     <h2>Thông tin khách hàng</h2>
                     </p>
-                    <p>
-                        Họ và tên: {{ $orders->users->name }}
+                    <p><b>
+                        Họ và tên:</b> {{ $orders->users->name }}
                     </p>
-                    <p>
-                        Email: {{ $orders->users->email }}
+                    <p><b>
+                        Email:</b> {{ $orders->users->email }}
                     </p>
-                    <p>
-                        Địa chỉ:{{ $orders->users->address }}
+                    <p><b>
+                        Địa chỉ:</b> {{ $orders->users->address }}
                     </p>
-                    <p>
-                        Số điện thoại: {{ $orders->users->phone }}
+                    <p><b>
+                        Số điện thoại:</b> {{ $orders->users->phone }}
                     </p>
-                    <p>
-                        Ngày tạo đơn:{{ $orders->created_at->format('D d/m/Y') }}
+                    <p><b>
+                        Ngày tạo đơn:</b> {{ $orders->created_at->format('D d/m/Y') }}
                     </p>
-
                     <br>
                 </div>
                 <div class="col-md-12">
-                    <table class="table table-bordered" style="border-color:  #0a0a0a">
+                    <h2>Danh sách sản phẩm</h2>
+                    <table class="table table-bordered" style="border-color:  #0a0a0a; width: 100%">
                         <thead style="background-color: #337ab7; color: #fff; border-color: #0a0a0a">
                             <tr>
                                 <th scope="col">Tên sản phẩm</th>
@@ -66,7 +66,7 @@
                             @foreach ($orderDetails as $item)
                                 <tr>
                                     <td>{{ $item->products->name }}</td>
-                                    <td>{{ number_format($item->price) }}</td>
+                                    <td>{{ number_format($item->products->price) }}</td>
                                     <td>{{ $item->quantity }}</td>
                                     <td>{{ $item->products->discount }}%</td>
                                     <td>{{ number_format(($item->price - ($item->price * $item->discount) / 100) * $item->quantity) }}

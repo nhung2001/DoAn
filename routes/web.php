@@ -70,6 +70,7 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     Route::get('/editProduct/{id}', [ProductController::class, 'edit'])->middleware('CheckLogin')->name('editProduct');
     Route::post('/updateProduct/{id}', [ProductController::class, 'update'])->middleware('CheckLogin')->name('updateProduct');
     Route::post('/destroyProduct/{id}', [ProductController::class, 'destroy'])->middleware('CheckLogin')->name('destroyProduct');
+    Route::post('/searchProduct', [ProductController::class, 'searchProduct'])->middleware('CheckLogin')->name('searchProduct');
 
     //new
     Route::get('/newAdmin', [NewController::class, 'index'])->middleware('CheckLogin')->name('newAdmin');
@@ -82,11 +83,13 @@ Route::prefix('admin')->middleware('CheckLogin')->group(function () {
     //order
     Route::post('/order', [OrderController::class, 'store'])->middleware('CheckLogin')->name('order');
     Route::get('/orderIndex', [OrderController::class, 'index'])->middleware('CheckLogin')->name('orderIndex');
+    Route::get('/orderFind', [OrderController::class, 'findOrder'])->middleware('CheckLogin')->name('orderFind');
     Route::get('/orderEdit/{id}', [OrderController::class, 'edit'])->middleware('CheckLogin')->name('orderEdit');
     Route::post('/orderUpdate/{id}', [OrderController::class, 'update'])->middleware('CheckLogin')->name('orderUpdate');
     Route::post('/orderDelete/{id}', [OrderController::class, 'destroy'])->middleware('CheckLogin')->name('orderDelete');
     Route::get('/show/{id}', [OrderController::class, 'show'])->middleware('CheckLogin')->name('orderShow');
     Route::get('order/pdf/{id}', [OrderController::class, 'pdf'])->middleware('CheckLogin')->name('orderPdf');
+
 
     //send mail
     Route::get('/mail', [MailController::class, 'index'])->middleware('CheckLogin')->name('mail');
@@ -108,9 +111,12 @@ Route::prefix('user')->group(function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 
     // favorite
-    route::get('/favorite', [HomeController::class, 'favorite'])->name('favorite');
+    route::get('/favorite', [HomeController::class, 'favorite'])->middleware('CheckLoginUser')->name('favorite');
     route::get('/addfavorite/{id}', [HomeController::class, 'addfavorite'])->middleware('CheckLoginUser')->name('addfavorite');
+    Route::get('facDelete/{id}', [HomeController::class, 'delete'])->middleware('CheckLogin')->name('facDelete');
+    Route::get('facClear', [HomeController::class, 'clear'])->middleware('CheckLogin')->name('facClear');
     //new
+
     Route::get('/new', [HomeController::class, 'new'])->name('new');
     Route::get('/newDetail/{id}', [HomeController::class, 'newDetail'])->name('newDetail');
     Route::get('/homeView', [HomeController::class, 'home'])->name('homeView');

@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit News</h1>
+                        <h1 class="m-0">Sửa Tin Tức</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,12 +28,12 @@
                         <form action="{{ route('updateNew', $new->id) }}" method="post" enctype="multipart/form-data">
                             @csrf
                             <div class="form-group">
-                                <label for="name">Name: </label>
+                                <label for="name">Tên tin tức: </label>
                                 <input disabled type="text" name="name" value="{{ $new->name }}"
                                     class="form-control " id="name">
                             </div>
                             <div class="form-group">
-                                <label for="description">Description: </label>
+                                <label for="description">Mô tả: </label>
                                 <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror"
                                     id="description">{{ $new->description }}</textarea>
                                 @error('description')
@@ -43,7 +43,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="content">Content: </label>
+                                <label for="content">Nội dung: </label>
                                 <textarea type="text" name="content" class="form-control @error('content') is-invalid @enderror"
                                     id="content">{{ $new->content }}</textarea>
                                 @error('content')
@@ -60,7 +60,7 @@
                                 </select>
                             </div>
                             <div class="form-group">
-                                <label for="image">Image: </label>
+                                <label for="image">Ảnh: </label>
                                 <input type="file" name="image" value="{{ $new->image }}" class="form-control "
                                     id="image">
                             </div>

@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Add Sub_cayegory</h1>
+                        <h1 class="m-0">Thêm Danh Mục</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,9 +28,9 @@
                         <form action="{{ route('storeSubCategory') }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Name: </label>
+                                <label for="email">Tên Danh Mục: </label>
                                 <input type="text" name="name"
-                                    class="form-control @error('name') is-invalid @enderror" placeholder="Enter name"
+                                    class="form-control @error('name') is-invalid @enderror" placeholder="Nhập tên danh mục"
                                     id="email">
                                 @error('name')
                                     <span class="invalid-feedback" role="alert">
@@ -39,9 +39,8 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Parent: </label>
+                                <label for="email">Danh mục cha: </label>
                                 <select name="categories_id" id="categories_id" class="form-select form-control">
-                                    {{-- <option value="0">--Danh mục cha--</option> --}}
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                                     @endforeach

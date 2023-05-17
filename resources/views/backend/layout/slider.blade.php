@@ -30,14 +30,15 @@
                 data-accordion="false" style="color:#367fa9">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-                <li class="nav-item">
-                    <a href="{{ route('dashboard') }}" class="nav-link">
-                        <i class="fa-solid fa-house"></i>
-                        <p>
-                            Dashboard
-                            {{-- <span class="right badge badge-danger"></span> --}}
-                        </p>
-                    </a>
+                @if (auth()->user()->role == 2)
+                    <li class="nav-item">
+                        <a href="{{ route('dashboard') }}" class="nav-link">
+                            <i class="fa-solid fa-house"></i>
+                            <p>
+                                Thống kê
+                            </p>
+                        </a>
+                @endif
                 </li>
                 <li class="nav-item ">
 
@@ -90,26 +91,26 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('user') }}" class="nav-link">
-                        <i class="fa-solid fa-users"></i>
-                        <p>
-                            Quản lý user
-                            <span class="right badge badge-danger"></span>
-                        </p>
-                    </a>
-                </li>
-
+                @if (auth()->user()->role == 2)
+                    <li class="nav-item">
+                        <a href="{{ route('user') }}" class="nav-link">
+                            <i class="fa-solid fa-users"></i>
+                            <p>
+                                Quản lý user
+                                <span class="right badge badge-danger"></span>
+                            </p>
+                        </a>
+                    </li>
+                @endif
                 <li class="nav-item">
                     <a href="{{ route('mail') }}" class="nav-link">
-                        <i class="fa-solid fa-envelope"></i>
+                        <i class="fa fa-envelope"></i>
                         <p>
                             Gửi mail tới user
                             <span class="right badge badge-danger"></span>
                         </p>
                     </a>
                 </li>
-
                 <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link">
                         <i class="fa-solid fa-right-from-bracket"></i>

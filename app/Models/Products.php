@@ -44,4 +44,8 @@ class Products extends Model
     {
         return $this->hasMany(favorite::class);
     }
+    public function quantity()
+    {
+        return $this->quantity;
+    }
 }

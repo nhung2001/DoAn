@@ -6,15 +6,26 @@ use App\Models\Sub_categories;
 use Illuminate\Http\Request;
 use App\Models\Categories;
 use App\Models\Products;
+use Illuminate\Support\Facades\Validator;
 
 class SubCategoryController extends Controller
 {
-    public function index()
+    // public function index()
+    // {
+    //     $subcategories = Sub_categories::orderby('id', 'ASC')->paginate(5);
+    //     return view('backend.sub_category.index', compact('subcategories'));
+    // }
+    public function index(Request $request)
     {
-        $subcategories = Sub_categories::orderby('id', 'ASC')->paginate(5);
+        $keyword = $request->input('keyword');
+        if ($keyword) {
+            $subcategories = Sub_categories::where('name', 'like', '%' . $keyword . '%')->paginate(5);
+        } else {
+            //$subcategories = Sub_categories::all();
+            $subcategories = Sub_categories::orderby('id', 'ASC')->paginate(5);
+        }
         return view('backend.sub_category.index', compact('subcategories'));
     }
-
     public function create()
     {
         $categories = Categories::get();
@@ -47,15 +58,27 @@ class SubCategoryController extends Controller
     }
     public function update(Request $request, $id)
     {
-        $request->validate(
-            [
-                'name' => 'required|unique:sub_categories,name',
-            ],
-            [
-                'name.required' => 'Vui lòng nhập tên',
-                'name.unique' => 'Tên danh mục đã tồn tại',
-            ]
-        );
+        
+            $validator = Validator::make($request->all(), [
+                'name' => [
+                    'required',
+                    function ($attribute, $value, $fail) use ($request) {
+                        $categoryId = $request->input('categories_id');
+        
+                        $existingCategory = Sub_categories::where('categories_id', $categoryId)
+                            ->where('name', $value)
+                            ->first();
+        
+                        if ($existingCategory) {
+                            $fail('Tên danh mục con đã tồn tại cho danh mục cha này.');
+                        }
+                    },
+                ],
+            ]);
+        
+            if ($validator->fails()) {
+                return redirect()->back()->withErrors($validator)->withInput();
+            }
         $subcategory = Sub_categories::find($id)->update([
             'name' => $request->name,
             'categories_id' => $request->categories_id,

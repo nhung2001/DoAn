@@ -16,7 +16,18 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">List Category</h1>
+                        <table style="width: 350%;">
+                            <td>
+                                <h1 class="m-0">Danh Sách Danh Mục</h1>
+                            </td>
+                            <td>
+                                <form action="" method="GET" style="margin-top: 20px; ">
+                                    <input style="width:450px;  height:30px" type="text" name="keyword"
+                                        placeholder="Nhập tên danh mục">
+                                    <button type="submit">Tìm</button>
+                                </form>
+                            </td>
+                        </table>
                     </div><!-- /.col -->
 
                 </div><!-- /.row -->
@@ -27,9 +38,18 @@
                 <div class="row">
                     <div class="col-md-12">
                         <a href="{{ route('createSubCategory') }}" class="btn btn-success float-left m-2"
-                            style="background-color: #337ab7">Add
-                            Sub_Category</a>
+                            style="background-color: #337ab7">Thêm danh mục</a>
                     </div>
+
+                    @if ($subcategories->isEmpty())
+                    <div class="col-md-12">
+                        <br>
+                        <ul>
+                            <h5>Không tìm thấy danh mục vừa nhập. Vui lòng nhập lại!</h5>
+                        </ul>
+                    </div>
+                    @else
+
                     <div class="col-md-12">
                         @if (session('success'))
                             <div class="alert alert-success alert-dismissable fade show">
@@ -46,9 +66,9 @@
                         <table class="table table-bordered table-hover">
                             <thead style="background-color: #337ab7; color: #fff; border-color: #1fc4b3">
                                 <tr>
-                                    <th scope="col">Name</th>
-                                    <th scope="col">Category</th> 
-                                    <th scope="col">Action</th>
+                                    <th scope="col">Tên danh mục</th>
+                                    <th scope="col">Danh mục cha</th> 
+                                    <th scope="col">Hành động</th>
                                 </tr>
                             </thead>
                             <tbody style="background-color: #fff">
@@ -58,8 +78,11 @@
                                         <td>{{ $subcategory->categories->name }}</td>
 
                                         <td>
-                                            <a href="{{ route('editSubCategory', [$subcategory->id]) }}"
-                                                class="btn d-inline btn-info">Edit</a>
+                                            <form class=" d-inline" action="{{ route('editSubCategory', $subcategory->id) }}">
+                                                @csrf
+                                                <button type="submit" class="btn btn-info"
+                                                    style="margin-right:5px ">Edit</a>
+                                            </form>
                                             <form class=" d-inline"
                                                 action="{{ route('destroySubCategory', $subcategory->id) }}" method="post">
                                                 @csrf
@@ -72,6 +95,8 @@
                             </tbody>
                         </table>
                     </div>
+                    @endif
+
                     <div class="col-md-12">
                         {{ $subcategories->links('pagination::bootstrap-4') }}
                     </div>

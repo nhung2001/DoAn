@@ -62,7 +62,7 @@
                             <td><img width="100px" height="100px"
                                     src="{{ asset('image/product/' . $item->products->image) }}"></td>
                             <td>{{ $item->products->name }}</td>
-                            <td>{{ number_format($item->price) }}</td>
+                            <td>{{ number_format($item->products->price) }}</td>
                             <td>{{ $item->quantity }}</td>
                             <td>{{ $item->products->discount }}%</td>
                             <td>{{ number_format(($item->price - ($item->price * $item->discount) / 100) * $item->quantity) }}

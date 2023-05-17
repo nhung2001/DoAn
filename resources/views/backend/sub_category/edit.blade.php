@@ -15,7 +15,7 @@
             <div class="container-fluid">
                 <div class="row mb-2">
                     <div class="col-sm-6">
-                        <h1 class="m-0">Edit Sub_category</h1>
+                        <h1 class="m-0">Sửa Danh Mục</h1>
                     </div><!-- /.col -->
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
@@ -28,7 +28,7 @@
                         <form action="{{ route('updateSubCategory', $subcategory->id) }}" method="post">
                             @csrf
                             <div class="form-group">
-                                <label for="email">Name: </label>
+                                <label for="email">Tên danh mục: </label>
                                 <input type="text" name="name" value="{{ $subcategory->name }}"
                                     class="form-control @error('name') is-invalid @enderror" id="email">
                                 @error('name')
@@ -38,7 +38,7 @@
                                 @enderror
                             </div>
                             <div class="form-group">
-                                <label for="email">Parent: </label>
+                                <label for="email">Danh mục cha: </label>
                                 <select name="categories_id" id="categories_id" class="form-select form-control">
                                     @foreach ($categories as $category)
                                         <option value="{{ $category->id }}"

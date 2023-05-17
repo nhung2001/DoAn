@@ -164,6 +164,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Barryvdh\DomPDF\ServiceProvider::class,
+        // Symfony\Component\Intl\IntlServiceProvider::class,
 
         /*
          * Package Service Providers...
@@ -195,5 +196,6 @@ return [
         // ...
         'PDF' => Barryvdh\DomPDF\Facade::class,
     ])->toArray(),
-
+    
+    
 ];
