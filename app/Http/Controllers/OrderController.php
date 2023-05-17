@@ -40,6 +40,7 @@ class OrderController extends Controller
             'users_id' => auth()->user()->id,
             'total' => Cart::subtotal(0, ',', ','),
         ]);
+        
         foreach ($content as $orderDetail) {
             $orderDetail = Oder_details::create([
                 'price' => $orderDetail->price,
